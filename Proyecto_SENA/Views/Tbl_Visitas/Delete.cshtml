@@ -1,0 +1,41 @@
+﻿@model Proyecto_SENA.Models.Tbl_Visitas
+
+@{
+    ViewBag.Title = "Eliminar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Eliminar</h2>
+
+<h3>Esta seguro que desea eliminar este registro?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            <label>Numero de ficha</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tbl_Fichas.Numero_Ficha)
+        </dd>
+
+        <dt>
+            <label>Instructor</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tbl_Instructores.Nombres) @Html.DisplayFor(model => model.Tbl_Instructores.Apellidos)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Eliminar" class="btn btn-danger" /> |
+            @Html.ActionLink("Volver", "Index")
+        </div>
+    }
+</div>

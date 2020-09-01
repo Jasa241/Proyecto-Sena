@@ -1,0 +1,47 @@
+﻿@model Proyecto_SENA.Models.Tbl_Evaluacion_Etapa_Productiva
+
+@{
+    ViewBag.Title = "Agregar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Agregar</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Evaluacion de la etapa productiva</h4>
+        <hr />
+        @Html.HiddenFor(model => model.Id_Aprendiz)
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <label>Juicio de evaluacion</label><br />
+            <div class="form-check">
+                @Html.RadioButtonFor(model => model.Juicio_Evaluacion, "Aprobado", new { @name = "Juicio_Evaluacion" })
+                <label class="form-check-label">Aprobado</label>
+                @Html.RadioButtonFor(model => model.Juicio_Evaluacion, "No aprobado", new { @name = "Juicio_Evaluacion" })
+            <label class="form-check-label">No aprobado</label>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Reconocimientos especiales sobre el desempeño</label><br />
+            <textarea class="form-control" rows="6" name="Reconocimientos"></textarea>
+        </div>
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Agregar" class="btn btn-success" />
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

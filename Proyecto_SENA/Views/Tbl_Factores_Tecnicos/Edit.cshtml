@@ -1,0 +1,169 @@
+﻿@model Proyecto_SENA.Models.Tbl_Factores_Tecnicos
+
+@{
+    ViewBag.Title = "Editar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Editar</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h4>Factores tecnicos</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.Id_Factores_Tecnicos)
+    @Html.HiddenFor(model => model.Tipo_Informe)
+    @Html.HiddenFor(model => model.Id_Aprendiz)
+
+    <div class="form-group">
+        <label>Transferencia de conocimiento</label><br />
+        <p>
+            Demuestra las competencias especificas del prigrama de formacion en situaciones reales de trabajo.
+        </p>
+        <textarea class="form-control" rows="6" name="Transferencia_Conocimiento">@Html.DisplayFor(model => model.Transferencia_Conocimiento)</textarea>
+        <div class="form-check">
+            @Html.RadioButtonFor(model => model.Valoracion_Conocimiento, "Satisfactorio", new { @name = "Valoracion_Relaciones" })
+            <label class="form-check-label">Satisfactorio</label>
+            @Html.RadioButtonFor(model => model.Valoracion_Conocimiento, "Por Mejorar", new { @name = "Valoracion_Relaciones" })
+            <label class="form-check-label">Por Mejorar</label>
+        </div>
+    </div>
+    <br />
+
+    <div class="form-group">
+        <label>Mejora continua</label><br />
+        <p>
+            Aporta al mejoramiento de los procesos propios de su desempeño.
+        </p>
+        <textarea class="form-control" rows="6" name="Mejora_Continua">@Html.DisplayFor(model => model.Mejora_Continua )</textarea>
+
+        <div class="form-check">
+            @Html.RadioButtonFor(model => model.Valoracion_Mejora, "Satisfactorio", new { @name = "Valoracion_Trabajo" })
+            <label class="form-check-label">Satisfactorio</label>
+            @Html.RadioButtonFor(model => model.Valoracion_Mejora, "Por Mejorar", new { @name = "Valoracion_Trabajo" })
+            <label class="form-check-label">Por Mejorar</label>
+        </div>
+    </div>
+    <br />
+
+    <div class="form-group">
+        <label>Fortalecimiento ocupacional</label><br />
+        <p>
+            Autogestiona acciones que fortalezca su perfil ocupacional en el marco de su proyecto de vida.
+        </p>
+        <textarea class="form-control" rows="6" name="Fortalecimiento_Ocupacional">@Html.DisplayFor(model => model.Fortalecimiento_Ocupacional)</textarea>
+        <div class="form-check">
+            @Html.RadioButtonFor(model => model.Valoracion_Fortalecimiento, "Satisfactorio", new { @name = "Valoracion_Solucion" })
+            <label class="form-check-label">Satisfactorio</label>
+            @Html.RadioButtonFor(model => model.Valoracion_Fortalecimiento, "Por Mejorar", new { @name = "Valoracion_Solucion" })
+            <label class="form-check-label">Por Mejorar</label>
+        </div>
+    </div>
+    <br />
+
+    <div class="form-group">
+        <label>Oportunidad y calidad</label><br />
+        <p>
+            Presenta con oportunidad y calidad los productos generados en el desarrollo de sus funciones y actividades.
+        </p>
+        <textarea class="form-control" rows="6" name="Oportunidad_Calidad">@Html.DisplayFor(model => model.Oportunidad_Calidad)</textarea>
+        <div class="form-check">
+            @Html.RadioButtonFor(model => model.Valoracion_Oportunidad, "Satisfactorio", new { @name = "Valoracion_Cumplimiento" })
+            <label class="form-check-label">Satisfactorio</label>
+            @Html.RadioButtonFor(model => model.Valoracion_Oportunidad, "Por Mejorar", new { @name = "Valoracion_Cumplimiento" })
+            <label class="form-check-label">Por Mejorar</label>
+        </div>
+    </div>
+    <br />
+
+    <div class="form-group">
+        <label>Responsabilidad ambiental</label><br />
+        <p>
+            Administra los recursos para el desarrollo de sus actividades con criterios de responsabilidad ambiental.
+        </p>
+        <textarea class="form-control" rows="6" name="Responsabilidad_Ambiental">@Html.DisplayFor(model => model.Responsabilidad_Ambiental)</textarea>
+        <div class="form-check">
+            @Html.RadioButtonFor(model => model.Valoracion_Ambiental, "Satisfactorio", new { @name = "Valoracion_Organizacion" })
+            <label class="form-check-label">Satisfactorio</label>
+            @Html.RadioButtonFor(model => model.Valoracion_Ambiental, "Por Mejorar", new { @name = "Valoracion_Organizacion" })
+            <label class="form-check-label">Por Mejorar</label>
+        </div>
+    </div>
+    <br />
+
+    <div class="form-group">
+        <label>Administracion de recursos</label><br />
+        <p>
+            Utiliza de manera racional los materiales, equipos y herramientas suministrados para el desempeño de sus actividades o funciones.
+        </p>
+        <textarea class="form-control" rows="6" name="Administracion_Recursos">@Html.DisplayFor(model => model.Administracion_Recursos)</textarea>
+        <div class="form-check">
+            @Html.RadioButtonFor(model => model.Valoracion_Administracion, "Satisfactorio", new { @name = "Valoracion_Organizacion" })
+            <label class="form-check-label">Satisfactorio</label>
+            @Html.RadioButtonFor(model => model.Valoracion_Administracion, "Por Mejorar", new { @name = "Valoracion_Organizacion" })
+            <label class="form-check-label">Por Mejorar</label>
+        </div>
+    </div>
+    <br />
+
+    <div class="form-group">
+        <label>Seguridad ocupacional e industrial</label><br />
+        <p>
+            Utiliza los elementos de seguridad y salud ocupacional de acuerdo con la normatividad vigente establecida para sus actividades o funciones.
+        </p>
+        <textarea class="form-control" rows="6" name="Seguridad_Ocupacional">@Html.DisplayFor(model => model.Seguridad_Ocupacional)</textarea>
+        <div class="form-check">
+            @Html.RadioButtonFor(model => model.Valoracion_Seguridad, "Satisfactorio", new { @name = "Valoracion_Organizacion" })
+            <label class="form-check-label">Satisfactorio</label>
+            @Html.RadioButtonFor(model => model.Valoracion_Seguridad, "Por Mejorar", new { @name = "Valoracion_Organizacion" })
+            <label class="form-check-label">Por Mejorar</label>
+        </div>
+    </div>
+    <br />
+
+    <div class="form-group">
+        <label>Documentacion etapa productiva</label><br />
+        <p>
+            Actualiza permanentemente el portafolio de evidencias.
+        </p>
+        <textarea class="form-control" rows="6" name="Documentacion_Etapa_Productiva">@Html.DisplayFor(model => model.Documentacion_Etapa_Productiva)</textarea>
+        <div class="form-check">
+            @Html.RadioButtonFor(model => model.Valoracion_Etapa_Productiva, "Satisfactorio", new { @name = "Valoracion_Organizacion" })
+            <label class="form-check-label">Satisfactorio</label>
+            @Html.RadioButtonFor(model => model.Valoracion_Etapa_Productiva, "Por Mejorar", new { @name = "Valoracion_Organizacion" })
+            <label class="form-check-label">Por Mejorar</label>
+        </div>
+    </div>
+    <br />
+
+    <div class="form-group">
+        <label>Observaciones del responsable ente coformador</label><br />
+        <p>
+            Sus observaciones proporcionan informacion que aporta al mejoramiento de la calidad de la formacion profesional integral
+        </p>
+        <textarea class="form-control" rows="6" name="Observacion_Jefe">@Html.DisplayFor(model => model.Observacion_Jefe)</textarea>
+    </div>
+    <br />
+
+    <div class="form-group">
+        <label>Observaciones del aprendiz</label><br />
+        <textarea class="form-control" rows="6" name="Observacion_Aprendiz">@Html.DisplayFor(model => model.Observacion_Aprendiz)</textarea>
+    </div>
+    <br />
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Editar" class="btn btn-info" />
+        </div>
+    </div>
+</div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,35 @@
+﻿@model Proyecto_SENA.Models.Tbl_Fichas
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Tbl_Fichas</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Numero_Ficha)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Numero_Ficha)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tbl_Programas.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tbl_Programas.Nombre)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id_Ficha }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

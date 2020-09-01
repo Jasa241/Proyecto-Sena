@@ -1,0 +1,27 @@
+﻿@model Proyecto_SENA.Models.Tbl_Planeacion_Etapa_Productiva
+
+@{
+    ViewBag.Title = "Detalles";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Detalles</h2>
+
+<h4>Planeacion Etapa Productiva</h4>
+
+<hr />
+
+<div>
+    <label>Actividades a desarrollar: </label> @Html.DisplayFor(model => model.Actividades_A_Desarrollar)<br />
+    <label>Evidencia de aprendizaje: </label> @Html.DisplayFor(model => model.Evidencias_Aprendizaje)<br />
+    <label>Fecha: </label>@{  var date = new DateTime();
+        date = Convert.ToDateTime(Model.Fecha);
+        @date.ToShortDateString()
+    }<br />
+    <label>Lugar: </label> @Html.DisplayFor(model => model.Lugar)<br />
+    <label>Observaciones: </label> @Html.DisplayFor(model => model.Observaciones)<br />
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.Id_Planeacion, etapa = ViewBag.etapa }) |
+    @Html.ActionLink("Volver", "Back", new { id = Model.Id_Aprendiz, etapa = ViewBag.etapa })
+</p>

@@ -1,0 +1,32 @@
+﻿@model Proyecto_SENA.Models.Tbl_Actitud_Comportamiento
+
+@{
+    ViewBag.Title = "Detalles";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Detalles</h2>
+<hr />
+<h4>Factores actitudinales y comportamentales </h4>
+<div>
+    <label>Tipo informe: </label> @{
+        string text;
+        if (Model.Tipo_Informe == 1)
+        {
+            text = "Parcial";
+        }
+        else
+        { text = "Final"; }
+        @text;
+    }<br />
+    <label>Relaciones interpersonales: </label> @Html.DisplayFor(model => model.Relaciones_Interpersonales) (@Html.DisplayFor(model => model.Valoracion_Relaciones))<br />
+    <label>Trabajo en equipo: </label> @Html.DisplayFor(model => model.TrabajoEnEquipo) (@Html.DisplayFor(model => model.Valoracion_Trabajo))<br />
+    <label>Solucion de problemas: </label> @Html.DisplayFor(model => model.Solucion_De_Problemas) (@Html.DisplayFor(model => model.Valoracion_Solucion))<br />
+    <label>Cumplimiento: </label> @Html.DisplayFor(model => model.Cumplimiento) (@Html.DisplayFor(model => model.Valoracion_Cumplimiento))<br />
+    <label>Organizacion: </label> @Html.DisplayFor(model => model.Organizacion) (@Html.DisplayFor(model => model.Valoracion_Organizacion))
+</div>
+
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.Id_Actitud, etapa = ViewBag.etapa }) |
+    @Html.ActionLink("Volver", "Back", new { Id_Aprendiz = Model.Id_Aprendiz, etapa = ViewBag.etapa })
+</p>

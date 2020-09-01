@@ -1,0 +1,36 @@
+﻿@model Proyecto_SENA.Models.Tbl_Factores_Tecnicos
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>Detalles</h2>
+<hr />
+<h4>Factores actitudinales y comportamentales </h4>
+<div>
+    <label>Tipo informe: </label> @{
+        string text;
+        if (Model.Tipo_Informe == 1)
+        {
+            text = "Parcial";
+        }
+        else
+        { text = "Final"; }
+        @text;
+    }<br />
+    <label>Transferencia de conocimiento: </label> @Html.DisplayFor(model => model.Transferencia_Conocimiento) (@Html.DisplayFor(model => model.Valoracion_Conocimiento))<br />
+    <label>Mejora continua: </label> @Html.DisplayFor(model => model.Mejora_Continua) (@Html.DisplayFor(model => model.Valoracion_Mejora))<br />
+    <label>Fortalecimiento ocupacional: </label> @Html.DisplayFor(model => model.Fortalecimiento_Ocupacional) (@Html.DisplayFor(model => model.Valoracion_Fortalecimiento))<br />
+    <label>Oportunidad y calidad: </label> @Html.DisplayFor(model => model.Oportunidad_Calidad) (@Html.DisplayFor(model => model.Valoracion_Oportunidad))<br />
+    <label>Responsabilidad ambiental: </label> @Html.DisplayFor(model => model.Responsabilidad_Ambiental) (@Html.DisplayFor(model => model.Valoracion_Ambiental))<br />
+    <label>Administracion de recursos: </label> @Html.DisplayFor(model => model.Administracion_Recursos) (@Html.DisplayFor(model => model.Valoracion_Administracion))<br />
+    <label>Seguridad ocupacional e industrial: </label> @Html.DisplayFor(model => model.Seguridad_Ocupacional) (@Html.DisplayFor(model => model.Valoracion_Seguridad))<br />
+    <label>Documentacion etapa productiva: </label> @Html.DisplayFor(model => model.Documentacion_Etapa_Productiva) (@Html.DisplayFor(model => model.Valoracion_Etapa_Productiva))<br />
+    <label>Observaciones del ente coformador: </label> @Html.DisplayFor(model => model.Observacion_Jefe)<br />
+    <label>Observaciones del aprendiz: </label> @Html.DisplayFor(model => model.Observacion_Aprendiz) 
+</div>
+
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.Id_Factores_Tecnicos, etapa = ViewBag.etapa }) |
+    @Html.ActionLink("Volver", "Back", new { Id_Aprendiz = Model.Id_Aprendiz, etapa = ViewBag.etapa })
+</p>

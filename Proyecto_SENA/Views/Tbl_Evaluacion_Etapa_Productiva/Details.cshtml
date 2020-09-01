@@ -1,0 +1,43 @@
+﻿@model Proyecto_SENA.Models.Tbl_Evaluacion_Etapa_Productiva
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Tbl_Evaluacion_Etapa_Productiva</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Juicio_Evaluacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Juicio_Evaluacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Reconocimientos)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Reconocimientos)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tbl_Aprendices.Numero_Identificacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tbl_Aprendices.Numero_Identificacion)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id_Evaluacion }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

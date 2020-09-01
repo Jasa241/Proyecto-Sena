@@ -1,0 +1,106 @@
+﻿@model IEnumerable<Proyecto_SENA.Models.Tbl_Actitud_Comportamiento>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Tipo_Informe)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Periodo_Evaluado)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Relaciones_Interpersonales)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Valoracion_Relaciones)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TrabajoEnEquipo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Valoracion_Trabajo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Solucion_De_Problemas)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Valoracion_Solucion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cumplimiento)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Valoracion_Cumplimiento)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Organizacion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Valoracion_Organizacion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tbl_Aprendices.Numero_Identificacion)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Tipo_Informe)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Periodo_Evaluado)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Relaciones_Interpersonales)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Valoracion_Relaciones)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TrabajoEnEquipo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Valoracion_Trabajo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Solucion_De_Problemas)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Valoracion_Solucion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cumplimiento)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Valoracion_Cumplimiento)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Organizacion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Valoracion_Organizacion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Tbl_Aprendices.Numero_Identificacion)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id_Actitud }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id_Actitud }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id_Actitud })
+        </td>
+    </tr>
+}
+
+</table>

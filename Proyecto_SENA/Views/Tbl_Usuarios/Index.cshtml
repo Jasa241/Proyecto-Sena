@@ -1,0 +1,41 @@
+﻿@model IEnumerable<Proyecto_SENA.Models.Tbl_Usuarios>
+
+@{
+    ViewBag.Title = "Usuarios";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Usuarios</h2>
+
+<p>
+    @Html.ActionLink("Agregar Usuario", "Create", null, new { @class = "btn btn-success" })
+</p>
+
+<table class="table">
+    <tr>
+        <th>
+            <label>Nombre de usuario</label>
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tbl_Roles.Rol)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NombreUsuario)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tbl_Roles.Rol)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { id = item.NombreUsuario }, new { @class = "btn btn-primary" })
+                @Html.ActionLink("Eliminar", "Delete", new { id = item.NombreUsuario }, new { @class = "btn btn-danger" })
+            </td>
+        </tr>
+    }
+
+</table>

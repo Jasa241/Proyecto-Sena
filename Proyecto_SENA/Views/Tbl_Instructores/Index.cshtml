@@ -1,0 +1,52 @@
+﻿@model IEnumerable<Proyecto_SENA.Models.Tbl_Instructores>
+
+@{
+    ViewBag.Title = "Instructores";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Instructores</h2>
+
+<p>
+    @Html.ActionLink("Agregar", "Create", null, new { @class = "btn btn-success" })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            <label>Identificacion</label>
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nombres)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Apellidos)
+        </th>
+        <th>
+            <label>Nombre de usuario</label>
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Numero_Identificacion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombres)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Apellidos)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tbl_Usuarios.NombreUsuario)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { id = item.Numero_Identificacion }, new { @class = "btn btn-primary" })
+                @Html.ActionLink("Eliminar", "Delete", new { id = item.Numero_Identificacion }, new { @class = "btn btn-danger" })
+            </td>
+        </tr>
+    }
+
+</table>

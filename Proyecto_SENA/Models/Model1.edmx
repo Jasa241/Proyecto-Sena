@@ -1,0 +1,866 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="practicas3Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Tbl_Actitud_Comportamiento">
+          <Key>
+            <PropertyRef Name="Id_Actitud" />
+          </Key>
+          <Property Name="Id_Actitud" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Tipo_Informe" Type="int" />
+          <Property Name="Relaciones_Interpersonales" Type="text" />
+          <Property Name="Valoracion_Relaciones" Type="varchar" MaxLength="15" />
+          <Property Name="TrabajoEnEquipo" Type="text" />
+          <Property Name="Valoracion_Trabajo" Type="varchar" MaxLength="15" />
+          <Property Name="Solucion_De_Problemas" Type="text" />
+          <Property Name="Valoracion_Solucion" Type="varchar" MaxLength="15" />
+          <Property Name="Cumplimiento" Type="text" />
+          <Property Name="Valoracion_Cumplimiento" Type="varchar" MaxLength="15" />
+          <Property Name="Organizacion" Type="text" />
+          <Property Name="Valoracion_Organizacion" Type="varchar" MaxLength="15" />
+          <Property Name="Id_Aprendiz" Type="int" />
+        </EntityType>
+        <EntityType Name="Tbl_Aprendices">
+          <Key>
+            <PropertyRef Name="Numero_Identificacion" />
+          </Key>
+          <Property Name="Numero_Identificacion" Type="int" Nullable="false" />
+          <Property Name="Nombres" Type="varchar" MaxLength="25" />
+          <Property Name="Apellidos" Type="varchar" MaxLength="25" />
+          <Property Name="Id_Ficha" Type="int" />
+          <Property Name="Telefono" Type="varchar" MaxLength="25" />
+          <Property Name="Correo" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Tbl_Empresas">
+          <Key>
+            <PropertyRef Name="Id_Empresa" />
+          </Key>
+          <Property Name="Id_Empresa" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Razon_Social" Type="varchar" MaxLength="50" />
+          <Property Name="Nit" Type="varchar" MaxLength="25" />
+          <Property Name="Direccion" Type="varchar" MaxLength="50" />
+          <Property Name="Nombre_Jefe" Type="varchar" MaxLength="25" />
+          <Property Name="Cargo" Type="varchar" MaxLength="25" />
+          <Property Name="Telefono" Type="varchar" MaxLength="25" />
+          <Property Name="Correo" Type="varchar" MaxLength="50" />
+          <Property Name="Id_Aprendiz" Type="int" />
+        </EntityType>
+        <EntityType Name="Tbl_Evaluacion_Etapa_Productiva">
+          <Key>
+            <PropertyRef Name="Id_Evaluacion" />
+          </Key>
+          <Property Name="Id_Evaluacion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Juicio_Evaluacion" Type="varchar" MaxLength="15" />
+          <Property Name="Reconocimientos" Type="text" />
+          <Property Name="Id_Aprendiz" Type="int" />
+        </EntityType>
+        <EntityType Name="Tbl_Factores_Tecnicos">
+          <Key>
+            <PropertyRef Name="Id_Factores_Tecnicos" />
+          </Key>
+          <Property Name="Id_Factores_Tecnicos" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Tipo_Informe" Type="int" />
+          <Property Name="Transferencia_Conocimiento" Type="text" />
+          <Property Name="Valoracion_Conocimiento" Type="varchar" MaxLength="15" />
+          <Property Name="Mejora_Continua" Type="text" />
+          <Property Name="Valoracion_Mejora" Type="varchar" MaxLength="15" />
+          <Property Name="Fortalecimiento_Ocupacional" Type="text" />
+          <Property Name="Valoracion_Fortalecimiento" Type="varchar" MaxLength="15" />
+          <Property Name="Oportunidad_Calidad" Type="text" />
+          <Property Name="Valoracion_Oportunidad" Type="varchar" MaxLength="15" />
+          <Property Name="Responsabilidad_Ambiental" Type="text" />
+          <Property Name="Valoracion_Ambiental" Type="varchar" MaxLength="15" />
+          <Property Name="Administracion_Recursos" Type="text" />
+          <Property Name="Valoracion_Administracion" Type="varchar" MaxLength="15" />
+          <Property Name="Seguridad_Ocupacional" Type="text" />
+          <Property Name="Valoracion_Seguridad" Type="varchar" MaxLength="15" />
+          <Property Name="Documentacion_Etapa_Productiva" Type="text" />
+          <Property Name="Valoracion_Etapa_Productiva" Type="varchar" MaxLength="15" />
+          <Property Name="Observacion_Jefe" Type="text" />
+          <Property Name="Observacion_Aprendiz" Type="text" />
+          <Property Name="Id_Aprendiz" Type="int" />
+        </EntityType>
+        <EntityType Name="Tbl_Fichas">
+          <Key>
+            <PropertyRef Name="Id_Ficha" />
+          </Key>
+          <Property Name="Id_Ficha" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Numero_Ficha" Type="int" />
+          <Property Name="Id_Programa" Type="int" />
+        </EntityType>
+        <EntityType Name="Tbl_Instructores">
+          <Key>
+            <PropertyRef Name="Numero_Identificacion" />
+          </Key>
+          <Property Name="Numero_Identificacion" Type="int" Nullable="false" />
+          <Property Name="Nombres" Type="varchar" MaxLength="50" />
+          <Property Name="Apellidos" Type="varchar" MaxLength="50" />
+          <Property Name="Id_Usuario" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Tbl_Planeacion_Etapa_Productiva">
+          <Key>
+            <PropertyRef Name="Id_Planeacion" />
+          </Key>
+          <Property Name="Id_Planeacion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Actividades_A_Desarrollar" Type="text" />
+          <Property Name="Evidencias_Aprendizaje" Type="text" />
+          <Property Name="Fecha" Type="date" />
+          <Property Name="Lugar" Type="varchar" MaxLength="50" />
+          <Property Name="Observaciones" Type="text" />
+          <Property Name="Id_Aprendiz" Type="int" />
+        </EntityType>
+        <EntityType Name="Tbl_Programas">
+          <Key>
+            <PropertyRef Name="Id_Programa" />
+          </Key>
+          <Property Name="Id_Programa" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Tbl_Roles">
+          <Key>
+            <PropertyRef Name="Id_Rol" />
+          </Key>
+          <Property Name="Id_Rol" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Rol" Type="varchar" MaxLength="15" />
+        </EntityType>
+        <EntityType Name="Tbl_Usuarios">
+          <Key>
+            <PropertyRef Name="NombreUsuario" />
+          </Key>
+          <Property Name="NombreUsuario" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Contrasena" Type="varchar" MaxLength="200" />
+          <Property Name="Id_Rol" Type="int" />
+        </EntityType>
+        <EntityType Name="Tbl_Visitas">
+          <Key>
+            <PropertyRef Name="Id_Visita" />
+          </Key>
+          <Property Name="Id_Visita" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id_Instructor" Type="int" />
+          <Property Name="Numero_Ficha" Type="int" />
+        </EntityType>
+        <Association Name="FK__Tbl_Actit__Id_Ap__3D5E1FD2">
+          <End Role="Tbl_Aprendices" Type="Self.Tbl_Aprendices" Multiplicity="0..1" />
+          <End Role="Tbl_Actitud_Comportamiento" Type="Self.Tbl_Actitud_Comportamiento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Aprendices">
+              <PropertyRef Name="Numero_Identificacion" />
+            </Principal>
+            <Dependent Role="Tbl_Actitud_Comportamiento">
+              <PropertyRef Name="Id_Aprendiz" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tbl_Apren__Id_Fi__30F848ED">
+          <End Role="Tbl_Fichas" Type="Self.Tbl_Fichas" Multiplicity="0..1" />
+          <End Role="Tbl_Aprendices" Type="Self.Tbl_Aprendices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Fichas">
+              <PropertyRef Name="Id_Ficha" />
+            </Principal>
+            <Dependent Role="Tbl_Aprendices">
+              <PropertyRef Name="Id_Ficha" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tbl_Empre__Id_Ap__33D4B598">
+          <End Role="Tbl_Aprendices" Type="Self.Tbl_Aprendices" Multiplicity="0..1" />
+          <End Role="Tbl_Empresas" Type="Self.Tbl_Empresas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Aprendices">
+              <PropertyRef Name="Numero_Identificacion" />
+            </Principal>
+            <Dependent Role="Tbl_Empresas">
+              <PropertyRef Name="Id_Aprendiz" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tbl_Evalu__Id_Ap__4316F928">
+          <End Role="Tbl_Aprendices" Type="Self.Tbl_Aprendices" Multiplicity="0..1" />
+          <End Role="Tbl_Evaluacion_Etapa_Productiva" Type="Self.Tbl_Evaluacion_Etapa_Productiva" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Aprendices">
+              <PropertyRef Name="Numero_Identificacion" />
+            </Principal>
+            <Dependent Role="Tbl_Evaluacion_Etapa_Productiva">
+              <PropertyRef Name="Id_Aprendiz" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tbl_Facto__Id_Ap__403A8C7D">
+          <End Role="Tbl_Aprendices" Type="Self.Tbl_Aprendices" Multiplicity="0..1" />
+          <End Role="Tbl_Factores_Tecnicos" Type="Self.Tbl_Factores_Tecnicos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Aprendices">
+              <PropertyRef Name="Numero_Identificacion" />
+            </Principal>
+            <Dependent Role="Tbl_Factores_Tecnicos">
+              <PropertyRef Name="Id_Aprendiz" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tbl_Ficha__Id_Pr__267ABA7A">
+          <End Role="Tbl_Programas" Type="Self.Tbl_Programas" Multiplicity="0..1" />
+          <End Role="Tbl_Fichas" Type="Self.Tbl_Fichas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Programas">
+              <PropertyRef Name="Id_Programa" />
+            </Principal>
+            <Dependent Role="Tbl_Fichas">
+              <PropertyRef Name="Id_Programa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tbl_Instr__Id_Us__2E1BDC42">
+          <End Role="Tbl_Usuarios" Type="Self.Tbl_Usuarios" Multiplicity="0..1" />
+          <End Role="Tbl_Instructores" Type="Self.Tbl_Instructores" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Usuarios">
+              <PropertyRef Name="NombreUsuario" />
+            </Principal>
+            <Dependent Role="Tbl_Instructores">
+              <PropertyRef Name="Id_Usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tbl_Plane__Id_Ap__3A81B327">
+          <End Role="Tbl_Aprendices" Type="Self.Tbl_Aprendices" Multiplicity="0..1" />
+          <End Role="Tbl_Planeacion_Etapa_Productiva" Type="Self.Tbl_Planeacion_Etapa_Productiva" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Aprendices">
+              <PropertyRef Name="Numero_Identificacion" />
+            </Principal>
+            <Dependent Role="Tbl_Planeacion_Etapa_Productiva">
+              <PropertyRef Name="Id_Aprendiz" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tbl_Usuar__Id_Ro__2B3F6F97">
+          <End Role="Tbl_Roles" Type="Self.Tbl_Roles" Multiplicity="0..1" />
+          <End Role="Tbl_Usuarios" Type="Self.Tbl_Usuarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Roles">
+              <PropertyRef Name="Id_Rol" />
+            </Principal>
+            <Dependent Role="Tbl_Usuarios">
+              <PropertyRef Name="Id_Rol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tbl_Visit__Id_In__36B12243">
+          <End Role="Tbl_Instructores" Type="Self.Tbl_Instructores" Multiplicity="0..1" />
+          <End Role="Tbl_Visitas" Type="Self.Tbl_Visitas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Instructores">
+              <PropertyRef Name="Numero_Identificacion" />
+            </Principal>
+            <Dependent Role="Tbl_Visitas">
+              <PropertyRef Name="Id_Instructor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tbl_Visit__Numer__37A5467C">
+          <End Role="Tbl_Fichas" Type="Self.Tbl_Fichas" Multiplicity="0..1" />
+          <End Role="Tbl_Visitas" Type="Self.Tbl_Visitas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Fichas">
+              <PropertyRef Name="Id_Ficha" />
+            </Principal>
+            <Dependent Role="Tbl_Visitas">
+              <PropertyRef Name="Numero_Ficha" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="practicas3ModelStoreContainer">
+          <EntitySet Name="Tbl_Actitud_Comportamiento" EntityType="Self.Tbl_Actitud_Comportamiento" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_Aprendices" EntityType="Self.Tbl_Aprendices" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_Empresas" EntityType="Self.Tbl_Empresas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_Evaluacion_Etapa_Productiva" EntityType="Self.Tbl_Evaluacion_Etapa_Productiva" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_Factores_Tecnicos" EntityType="Self.Tbl_Factores_Tecnicos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_Fichas" EntityType="Self.Tbl_Fichas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_Instructores" EntityType="Self.Tbl_Instructores" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_Planeacion_Etapa_Productiva" EntityType="Self.Tbl_Planeacion_Etapa_Productiva" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_Programas" EntityType="Self.Tbl_Programas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_Roles" EntityType="Self.Tbl_Roles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_Usuarios" EntityType="Self.Tbl_Usuarios" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_Visitas" EntityType="Self.Tbl_Visitas" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Tbl_Actit__Id_Ap__3D5E1FD2" Association="Self.FK__Tbl_Actit__Id_Ap__3D5E1FD2">
+            <End Role="Tbl_Aprendices" EntitySet="Tbl_Aprendices" />
+            <End Role="Tbl_Actitud_Comportamiento" EntitySet="Tbl_Actitud_Comportamiento" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tbl_Apren__Id_Fi__30F848ED" Association="Self.FK__Tbl_Apren__Id_Fi__30F848ED">
+            <End Role="Tbl_Fichas" EntitySet="Tbl_Fichas" />
+            <End Role="Tbl_Aprendices" EntitySet="Tbl_Aprendices" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tbl_Empre__Id_Ap__33D4B598" Association="Self.FK__Tbl_Empre__Id_Ap__33D4B598">
+            <End Role="Tbl_Aprendices" EntitySet="Tbl_Aprendices" />
+            <End Role="Tbl_Empresas" EntitySet="Tbl_Empresas" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tbl_Evalu__Id_Ap__4316F928" Association="Self.FK__Tbl_Evalu__Id_Ap__4316F928">
+            <End Role="Tbl_Aprendices" EntitySet="Tbl_Aprendices" />
+            <End Role="Tbl_Evaluacion_Etapa_Productiva" EntitySet="Tbl_Evaluacion_Etapa_Productiva" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tbl_Facto__Id_Ap__403A8C7D" Association="Self.FK__Tbl_Facto__Id_Ap__403A8C7D">
+            <End Role="Tbl_Aprendices" EntitySet="Tbl_Aprendices" />
+            <End Role="Tbl_Factores_Tecnicos" EntitySet="Tbl_Factores_Tecnicos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tbl_Ficha__Id_Pr__267ABA7A" Association="Self.FK__Tbl_Ficha__Id_Pr__267ABA7A">
+            <End Role="Tbl_Programas" EntitySet="Tbl_Programas" />
+            <End Role="Tbl_Fichas" EntitySet="Tbl_Fichas" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tbl_Instr__Id_Us__2E1BDC42" Association="Self.FK__Tbl_Instr__Id_Us__2E1BDC42">
+            <End Role="Tbl_Usuarios" EntitySet="Tbl_Usuarios" />
+            <End Role="Tbl_Instructores" EntitySet="Tbl_Instructores" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tbl_Plane__Id_Ap__3A81B327" Association="Self.FK__Tbl_Plane__Id_Ap__3A81B327">
+            <End Role="Tbl_Aprendices" EntitySet="Tbl_Aprendices" />
+            <End Role="Tbl_Planeacion_Etapa_Productiva" EntitySet="Tbl_Planeacion_Etapa_Productiva" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tbl_Usuar__Id_Ro__2B3F6F97" Association="Self.FK__Tbl_Usuar__Id_Ro__2B3F6F97">
+            <End Role="Tbl_Roles" EntitySet="Tbl_Roles" />
+            <End Role="Tbl_Usuarios" EntitySet="Tbl_Usuarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tbl_Visit__Id_In__36B12243" Association="Self.FK__Tbl_Visit__Id_In__36B12243">
+            <End Role="Tbl_Instructores" EntitySet="Tbl_Instructores" />
+            <End Role="Tbl_Visitas" EntitySet="Tbl_Visitas" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tbl_Visit__Numer__37A5467C" Association="Self.FK__Tbl_Visit__Numer__37A5467C">
+            <End Role="Tbl_Fichas" EntitySet="Tbl_Fichas" />
+            <End Role="Tbl_Visitas" EntitySet="Tbl_Visitas" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="practicas3Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="practicas3Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Tbl_Actitud_Comportamiento" EntityType="practicas3Model.Tbl_Actitud_Comportamiento" />
+          <EntitySet Name="Tbl_Aprendices" EntityType="practicas3Model.Tbl_Aprendices" />
+          <EntitySet Name="Tbl_Empresas" EntityType="practicas3Model.Tbl_Empresas" />
+          <EntitySet Name="Tbl_Evaluacion_Etapa_Productiva" EntityType="practicas3Model.Tbl_Evaluacion_Etapa_Productiva" />
+          <EntitySet Name="Tbl_Factores_Tecnicos" EntityType="practicas3Model.Tbl_Factores_Tecnicos" />
+          <EntitySet Name="Tbl_Fichas" EntityType="practicas3Model.Tbl_Fichas" />
+          <EntitySet Name="Tbl_Instructores" EntityType="practicas3Model.Tbl_Instructores" />
+          <EntitySet Name="Tbl_Planeacion_Etapa_Productiva" EntityType="practicas3Model.Tbl_Planeacion_Etapa_Productiva" />
+          <EntitySet Name="Tbl_Programas" EntityType="practicas3Model.Tbl_Programas" />
+          <EntitySet Name="Tbl_Roles" EntityType="practicas3Model.Tbl_Roles" />
+          <EntitySet Name="Tbl_Usuarios" EntityType="practicas3Model.Tbl_Usuarios" />
+          <EntitySet Name="Tbl_Visitas" EntityType="practicas3Model.Tbl_Visitas" />
+          <AssociationSet Name="FK__Tbl_Actit__Id_Ap__3D5E1FD2" Association="practicas3Model.FK__Tbl_Actit__Id_Ap__3D5E1FD2">
+            <End Role="Tbl_Aprendices" EntitySet="Tbl_Aprendices" />
+            <End Role="Tbl_Actitud_Comportamiento" EntitySet="Tbl_Actitud_Comportamiento" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tbl_Apren__Id_Fi__30F848ED" Association="practicas3Model.FK__Tbl_Apren__Id_Fi__30F848ED">
+            <End Role="Tbl_Fichas" EntitySet="Tbl_Fichas" />
+            <End Role="Tbl_Aprendices" EntitySet="Tbl_Aprendices" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tbl_Empre__Id_Ap__33D4B598" Association="practicas3Model.FK__Tbl_Empre__Id_Ap__33D4B598">
+            <End Role="Tbl_Aprendices" EntitySet="Tbl_Aprendices" />
+            <End Role="Tbl_Empresas" EntitySet="Tbl_Empresas" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tbl_Evalu__Id_Ap__4316F928" Association="practicas3Model.FK__Tbl_Evalu__Id_Ap__4316F928">
+            <End Role="Tbl_Aprendices" EntitySet="Tbl_Aprendices" />
+            <End Role="Tbl_Evaluacion_Etapa_Productiva" EntitySet="Tbl_Evaluacion_Etapa_Productiva" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tbl_Facto__Id_Ap__403A8C7D" Association="practicas3Model.FK__Tbl_Facto__Id_Ap__403A8C7D">
+            <End Role="Tbl_Aprendices" EntitySet="Tbl_Aprendices" />
+            <End Role="Tbl_Factores_Tecnicos" EntitySet="Tbl_Factores_Tecnicos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tbl_Plane__Id_Ap__3A81B327" Association="practicas3Model.FK__Tbl_Plane__Id_Ap__3A81B327">
+            <End Role="Tbl_Aprendices" EntitySet="Tbl_Aprendices" />
+            <End Role="Tbl_Planeacion_Etapa_Productiva" EntitySet="Tbl_Planeacion_Etapa_Productiva" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tbl_Ficha__Id_Pr__267ABA7A" Association="practicas3Model.FK__Tbl_Ficha__Id_Pr__267ABA7A">
+            <End Role="Tbl_Programas" EntitySet="Tbl_Programas" />
+            <End Role="Tbl_Fichas" EntitySet="Tbl_Fichas" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tbl_Visit__Numer__37A5467C" Association="practicas3Model.FK__Tbl_Visit__Numer__37A5467C">
+            <End Role="Tbl_Fichas" EntitySet="Tbl_Fichas" />
+            <End Role="Tbl_Visitas" EntitySet="Tbl_Visitas" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tbl_Instr__Id_Us__2E1BDC42" Association="practicas3Model.FK__Tbl_Instr__Id_Us__2E1BDC42">
+            <End Role="Tbl_Usuarios" EntitySet="Tbl_Usuarios" />
+            <End Role="Tbl_Instructores" EntitySet="Tbl_Instructores" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tbl_Visit__Id_In__36B12243" Association="practicas3Model.FK__Tbl_Visit__Id_In__36B12243">
+            <End Role="Tbl_Instructores" EntitySet="Tbl_Instructores" />
+            <End Role="Tbl_Visitas" EntitySet="Tbl_Visitas" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tbl_Usuar__Id_Ro__2B3F6F97" Association="practicas3Model.FK__Tbl_Usuar__Id_Ro__2B3F6F97">
+            <End Role="Tbl_Roles" EntitySet="Tbl_Roles" />
+            <End Role="Tbl_Usuarios" EntitySet="Tbl_Usuarios" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Tbl_Actitud_Comportamiento">
+          <Key>
+            <PropertyRef Name="Id_Actitud" />
+          </Key>
+          <Property Name="Id_Actitud" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Tipo_Informe" Type="Int32" />
+          <Property Name="Relaciones_Interpersonales" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Valoracion_Relaciones" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="TrabajoEnEquipo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Valoracion_Trabajo" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Solucion_De_Problemas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Valoracion_Solucion" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Cumplimiento" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Valoracion_Cumplimiento" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Organizacion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Valoracion_Organizacion" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Id_Aprendiz" Type="Int32" />
+          <NavigationProperty Name="Tbl_Aprendices" Relationship="practicas3Model.FK__Tbl_Actit__Id_Ap__3D5E1FD2" FromRole="Tbl_Actitud_Comportamiento" ToRole="Tbl_Aprendices" />
+        </EntityType>
+        <EntityType Name="Tbl_Aprendices">
+          <Key>
+            <PropertyRef Name="Numero_Identificacion" />
+          </Key>
+          <Property Name="Numero_Identificacion" Type="Int32" Nullable="false" />
+          <Property Name="Nombres" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="Apellidos" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="Id_Ficha" Type="Int32" />
+          <Property Name="Telefono" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="Correo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Tbl_Actitud_Comportamiento" Relationship="practicas3Model.FK__Tbl_Actit__Id_Ap__3D5E1FD2" FromRole="Tbl_Aprendices" ToRole="Tbl_Actitud_Comportamiento" />
+          <NavigationProperty Name="Tbl_Fichas" Relationship="practicas3Model.FK__Tbl_Apren__Id_Fi__30F848ED" FromRole="Tbl_Aprendices" ToRole="Tbl_Fichas" />
+          <NavigationProperty Name="Tbl_Empresas" Relationship="practicas3Model.FK__Tbl_Empre__Id_Ap__33D4B598" FromRole="Tbl_Aprendices" ToRole="Tbl_Empresas" />
+          <NavigationProperty Name="Tbl_Evaluacion_Etapa_Productiva" Relationship="practicas3Model.FK__Tbl_Evalu__Id_Ap__4316F928" FromRole="Tbl_Aprendices" ToRole="Tbl_Evaluacion_Etapa_Productiva" />
+          <NavigationProperty Name="Tbl_Factores_Tecnicos" Relationship="practicas3Model.FK__Tbl_Facto__Id_Ap__403A8C7D" FromRole="Tbl_Aprendices" ToRole="Tbl_Factores_Tecnicos" />
+          <NavigationProperty Name="Tbl_Planeacion_Etapa_Productiva" Relationship="practicas3Model.FK__Tbl_Plane__Id_Ap__3A81B327" FromRole="Tbl_Aprendices" ToRole="Tbl_Planeacion_Etapa_Productiva" />
+        </EntityType>
+        <EntityType Name="Tbl_Empresas">
+          <Key>
+            <PropertyRef Name="Id_Empresa" />
+          </Key>
+          <Property Name="Id_Empresa" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Razon_Social" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Nit" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="Direccion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Nombre_Jefe" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="Cargo" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="Telefono" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="Correo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Id_Aprendiz" Type="Int32" />
+          <NavigationProperty Name="Tbl_Aprendices" Relationship="practicas3Model.FK__Tbl_Empre__Id_Ap__33D4B598" FromRole="Tbl_Empresas" ToRole="Tbl_Aprendices" />
+        </EntityType>
+        <EntityType Name="Tbl_Evaluacion_Etapa_Productiva">
+          <Key>
+            <PropertyRef Name="Id_Evaluacion" />
+          </Key>
+          <Property Name="Id_Evaluacion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Juicio_Evaluacion" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Reconocimientos" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Id_Aprendiz" Type="Int32" />
+          <NavigationProperty Name="Tbl_Aprendices" Relationship="practicas3Model.FK__Tbl_Evalu__Id_Ap__4316F928" FromRole="Tbl_Evaluacion_Etapa_Productiva" ToRole="Tbl_Aprendices" />
+        </EntityType>
+        <EntityType Name="Tbl_Factores_Tecnicos">
+          <Key>
+            <PropertyRef Name="Id_Factores_Tecnicos" />
+          </Key>
+          <Property Name="Id_Factores_Tecnicos" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Tipo_Informe" Type="Int32" />
+          <Property Name="Transferencia_Conocimiento" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Valoracion_Conocimiento" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Mejora_Continua" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Valoracion_Mejora" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Fortalecimiento_Ocupacional" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Valoracion_Fortalecimiento" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Oportunidad_Calidad" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Valoracion_Oportunidad" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Responsabilidad_Ambiental" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Valoracion_Ambiental" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Administracion_Recursos" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Valoracion_Administracion" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Seguridad_Ocupacional" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Valoracion_Seguridad" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Documentacion_Etapa_Productiva" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Valoracion_Etapa_Productiva" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Observacion_Jefe" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Observacion_Aprendiz" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Id_Aprendiz" Type="Int32" />
+          <NavigationProperty Name="Tbl_Aprendices" Relationship="practicas3Model.FK__Tbl_Facto__Id_Ap__403A8C7D" FromRole="Tbl_Factores_Tecnicos" ToRole="Tbl_Aprendices" />
+        </EntityType>
+        <EntityType Name="Tbl_Fichas">
+          <Key>
+            <PropertyRef Name="Id_Ficha" />
+          </Key>
+          <Property Name="Id_Ficha" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Numero_Ficha" Type="Int32" />
+          <Property Name="Id_Programa" Type="Int32" />
+          <NavigationProperty Name="Tbl_Aprendices" Relationship="practicas3Model.FK__Tbl_Apren__Id_Fi__30F848ED" FromRole="Tbl_Fichas" ToRole="Tbl_Aprendices" />
+          <NavigationProperty Name="Tbl_Programas" Relationship="practicas3Model.FK__Tbl_Ficha__Id_Pr__267ABA7A" FromRole="Tbl_Fichas" ToRole="Tbl_Programas" />
+          <NavigationProperty Name="Tbl_Visitas" Relationship="practicas3Model.FK__Tbl_Visit__Numer__37A5467C" FromRole="Tbl_Fichas" ToRole="Tbl_Visitas" />
+        </EntityType>
+        <EntityType Name="Tbl_Instructores">
+          <Key>
+            <PropertyRef Name="Numero_Identificacion" />
+          </Key>
+          <Property Name="Numero_Identificacion" Type="Int32" Nullable="false" />
+          <Property Name="Nombres" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Apellidos" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Id_Usuario" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Tbl_Usuarios" Relationship="practicas3Model.FK__Tbl_Instr__Id_Us__2E1BDC42" FromRole="Tbl_Instructores" ToRole="Tbl_Usuarios" />
+          <NavigationProperty Name="Tbl_Visitas" Relationship="practicas3Model.FK__Tbl_Visit__Id_In__36B12243" FromRole="Tbl_Instructores" ToRole="Tbl_Visitas" />
+        </EntityType>
+        <EntityType Name="Tbl_Planeacion_Etapa_Productiva">
+          <Key>
+            <PropertyRef Name="Id_Planeacion" />
+          </Key>
+          <Property Name="Id_Planeacion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Actividades_A_Desarrollar" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Evidencias_Aprendizaje" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Fecha" Type="DateTime" Precision="0" />
+          <Property Name="Lugar" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Observaciones" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Id_Aprendiz" Type="Int32" />
+          <NavigationProperty Name="Tbl_Aprendices" Relationship="practicas3Model.FK__Tbl_Plane__Id_Ap__3A81B327" FromRole="Tbl_Planeacion_Etapa_Productiva" ToRole="Tbl_Aprendices" />
+        </EntityType>
+        <EntityType Name="Tbl_Programas">
+          <Key>
+            <PropertyRef Name="Id_Programa" />
+          </Key>
+          <Property Name="Id_Programa" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Tbl_Fichas" Relationship="practicas3Model.FK__Tbl_Ficha__Id_Pr__267ABA7A" FromRole="Tbl_Programas" ToRole="Tbl_Fichas" />
+        </EntityType>
+        <EntityType Name="Tbl_Roles">
+          <Key>
+            <PropertyRef Name="Id_Rol" />
+          </Key>
+          <Property Name="Id_Rol" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Rol" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Tbl_Usuarios" Relationship="practicas3Model.FK__Tbl_Usuar__Id_Ro__2B3F6F97" FromRole="Tbl_Roles" ToRole="Tbl_Usuarios" />
+        </EntityType>
+        <EntityType Name="Tbl_Usuarios">
+          <Key>
+            <PropertyRef Name="NombreUsuario" />
+          </Key>
+          <Property Name="NombreUsuario" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Contrasena" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Id_Rol" Type="Int32" />
+          <NavigationProperty Name="Tbl_Instructores" Relationship="practicas3Model.FK__Tbl_Instr__Id_Us__2E1BDC42" FromRole="Tbl_Usuarios" ToRole="Tbl_Instructores" />
+          <NavigationProperty Name="Tbl_Roles" Relationship="practicas3Model.FK__Tbl_Usuar__Id_Ro__2B3F6F97" FromRole="Tbl_Usuarios" ToRole="Tbl_Roles" />
+        </EntityType>
+        <EntityType Name="Tbl_Visitas">
+          <Key>
+            <PropertyRef Name="Id_Visita" />
+          </Key>
+          <Property Name="Id_Visita" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id_Instructor" Type="Int32" />
+          <Property Name="Numero_Ficha" Type="Int32" />
+          <NavigationProperty Name="Tbl_Fichas" Relationship="practicas3Model.FK__Tbl_Visit__Numer__37A5467C" FromRole="Tbl_Visitas" ToRole="Tbl_Fichas" />
+          <NavigationProperty Name="Tbl_Instructores" Relationship="practicas3Model.FK__Tbl_Visit__Id_In__36B12243" FromRole="Tbl_Visitas" ToRole="Tbl_Instructores" />
+        </EntityType>
+        <Association Name="FK__Tbl_Actit__Id_Ap__3D5E1FD2">
+          <End Type="practicas3Model.Tbl_Aprendices" Role="Tbl_Aprendices" Multiplicity="0..1" />
+          <End Type="practicas3Model.Tbl_Actitud_Comportamiento" Role="Tbl_Actitud_Comportamiento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Aprendices">
+              <PropertyRef Name="Numero_Identificacion" />
+            </Principal>
+            <Dependent Role="Tbl_Actitud_Comportamiento">
+              <PropertyRef Name="Id_Aprendiz" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tbl_Apren__Id_Fi__30F848ED">
+          <End Type="practicas3Model.Tbl_Fichas" Role="Tbl_Fichas" Multiplicity="0..1" />
+          <End Type="practicas3Model.Tbl_Aprendices" Role="Tbl_Aprendices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Fichas">
+              <PropertyRef Name="Id_Ficha" />
+            </Principal>
+            <Dependent Role="Tbl_Aprendices">
+              <PropertyRef Name="Id_Ficha" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tbl_Empre__Id_Ap__33D4B598">
+          <End Type="practicas3Model.Tbl_Aprendices" Role="Tbl_Aprendices" Multiplicity="0..1" />
+          <End Type="practicas3Model.Tbl_Empresas" Role="Tbl_Empresas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Aprendices">
+              <PropertyRef Name="Numero_Identificacion" />
+            </Principal>
+            <Dependent Role="Tbl_Empresas">
+              <PropertyRef Name="Id_Aprendiz" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tbl_Evalu__Id_Ap__4316F928">
+          <End Type="practicas3Model.Tbl_Aprendices" Role="Tbl_Aprendices" Multiplicity="0..1" />
+          <End Type="practicas3Model.Tbl_Evaluacion_Etapa_Productiva" Role="Tbl_Evaluacion_Etapa_Productiva" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Aprendices">
+              <PropertyRef Name="Numero_Identificacion" />
+            </Principal>
+            <Dependent Role="Tbl_Evaluacion_Etapa_Productiva">
+              <PropertyRef Name="Id_Aprendiz" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tbl_Facto__Id_Ap__403A8C7D">
+          <End Type="practicas3Model.Tbl_Aprendices" Role="Tbl_Aprendices" Multiplicity="0..1" />
+          <End Type="practicas3Model.Tbl_Factores_Tecnicos" Role="Tbl_Factores_Tecnicos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Aprendices">
+              <PropertyRef Name="Numero_Identificacion" />
+            </Principal>
+            <Dependent Role="Tbl_Factores_Tecnicos">
+              <PropertyRef Name="Id_Aprendiz" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tbl_Plane__Id_Ap__3A81B327">
+          <End Type="practicas3Model.Tbl_Aprendices" Role="Tbl_Aprendices" Multiplicity="0..1" />
+          <End Type="practicas3Model.Tbl_Planeacion_Etapa_Productiva" Role="Tbl_Planeacion_Etapa_Productiva" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Aprendices">
+              <PropertyRef Name="Numero_Identificacion" />
+            </Principal>
+            <Dependent Role="Tbl_Planeacion_Etapa_Productiva">
+              <PropertyRef Name="Id_Aprendiz" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tbl_Ficha__Id_Pr__267ABA7A">
+          <End Type="practicas3Model.Tbl_Programas" Role="Tbl_Programas" Multiplicity="0..1" />
+          <End Type="practicas3Model.Tbl_Fichas" Role="Tbl_Fichas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Programas">
+              <PropertyRef Name="Id_Programa" />
+            </Principal>
+            <Dependent Role="Tbl_Fichas">
+              <PropertyRef Name="Id_Programa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tbl_Visit__Numer__37A5467C">
+          <End Type="practicas3Model.Tbl_Fichas" Role="Tbl_Fichas" Multiplicity="0..1" />
+          <End Type="practicas3Model.Tbl_Visitas" Role="Tbl_Visitas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Fichas">
+              <PropertyRef Name="Id_Ficha" />
+            </Principal>
+            <Dependent Role="Tbl_Visitas">
+              <PropertyRef Name="Numero_Ficha" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tbl_Instr__Id_Us__2E1BDC42">
+          <End Type="practicas3Model.Tbl_Usuarios" Role="Tbl_Usuarios" Multiplicity="0..1" />
+          <End Type="practicas3Model.Tbl_Instructores" Role="Tbl_Instructores" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Usuarios">
+              <PropertyRef Name="NombreUsuario" />
+            </Principal>
+            <Dependent Role="Tbl_Instructores">
+              <PropertyRef Name="Id_Usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tbl_Visit__Id_In__36B12243">
+          <End Type="practicas3Model.Tbl_Instructores" Role="Tbl_Instructores" Multiplicity="0..1" />
+          <End Type="practicas3Model.Tbl_Visitas" Role="Tbl_Visitas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Instructores">
+              <PropertyRef Name="Numero_Identificacion" />
+            </Principal>
+            <Dependent Role="Tbl_Visitas">
+              <PropertyRef Name="Id_Instructor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tbl_Usuar__Id_Ro__2B3F6F97">
+          <End Type="practicas3Model.Tbl_Roles" Role="Tbl_Roles" Multiplicity="0..1" />
+          <End Type="practicas3Model.Tbl_Usuarios" Role="Tbl_Usuarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Roles">
+              <PropertyRef Name="Id_Rol" />
+            </Principal>
+            <Dependent Role="Tbl_Usuarios">
+              <PropertyRef Name="Id_Rol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="practicas3ModelStoreContainer" CdmEntityContainer="practicas3Entities">
+          <EntitySetMapping Name="Tbl_Actitud_Comportamiento">
+            <EntityTypeMapping TypeName="practicas3Model.Tbl_Actitud_Comportamiento">
+              <MappingFragment StoreEntitySet="Tbl_Actitud_Comportamiento">
+                <ScalarProperty Name="Id_Aprendiz" ColumnName="Id_Aprendiz" />
+                <ScalarProperty Name="Valoracion_Organizacion" ColumnName="Valoracion_Organizacion" />
+                <ScalarProperty Name="Organizacion" ColumnName="Organizacion" />
+                <ScalarProperty Name="Valoracion_Cumplimiento" ColumnName="Valoracion_Cumplimiento" />
+                <ScalarProperty Name="Cumplimiento" ColumnName="Cumplimiento" />
+                <ScalarProperty Name="Valoracion_Solucion" ColumnName="Valoracion_Solucion" />
+                <ScalarProperty Name="Solucion_De_Problemas" ColumnName="Solucion_De_Problemas" />
+                <ScalarProperty Name="Valoracion_Trabajo" ColumnName="Valoracion_Trabajo" />
+                <ScalarProperty Name="TrabajoEnEquipo" ColumnName="TrabajoEnEquipo" />
+                <ScalarProperty Name="Valoracion_Relaciones" ColumnName="Valoracion_Relaciones" />
+                <ScalarProperty Name="Relaciones_Interpersonales" ColumnName="Relaciones_Interpersonales" />
+                <ScalarProperty Name="Tipo_Informe" ColumnName="Tipo_Informe" />
+                <ScalarProperty Name="Id_Actitud" ColumnName="Id_Actitud" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_Aprendices">
+            <EntityTypeMapping TypeName="practicas3Model.Tbl_Aprendices">
+              <MappingFragment StoreEntitySet="Tbl_Aprendices">
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Id_Ficha" ColumnName="Id_Ficha" />
+                <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
+                <ScalarProperty Name="Nombres" ColumnName="Nombres" />
+                <ScalarProperty Name="Numero_Identificacion" ColumnName="Numero_Identificacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_Empresas">
+            <EntityTypeMapping TypeName="practicas3Model.Tbl_Empresas">
+              <MappingFragment StoreEntitySet="Tbl_Empresas">
+                <ScalarProperty Name="Id_Aprendiz" ColumnName="Id_Aprendiz" />
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Cargo" ColumnName="Cargo" />
+                <ScalarProperty Name="Nombre_Jefe" ColumnName="Nombre_Jefe" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="Nit" ColumnName="Nit" />
+                <ScalarProperty Name="Razon_Social" ColumnName="Razon_Social" />
+                <ScalarProperty Name="Id_Empresa" ColumnName="Id_Empresa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_Evaluacion_Etapa_Productiva">
+            <EntityTypeMapping TypeName="practicas3Model.Tbl_Evaluacion_Etapa_Productiva">
+              <MappingFragment StoreEntitySet="Tbl_Evaluacion_Etapa_Productiva">
+                <ScalarProperty Name="Id_Aprendiz" ColumnName="Id_Aprendiz" />
+                <ScalarProperty Name="Reconocimientos" ColumnName="Reconocimientos" />
+                <ScalarProperty Name="Juicio_Evaluacion" ColumnName="Juicio_Evaluacion" />
+                <ScalarProperty Name="Id_Evaluacion" ColumnName="Id_Evaluacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_Factores_Tecnicos">
+            <EntityTypeMapping TypeName="practicas3Model.Tbl_Factores_Tecnicos">
+              <MappingFragment StoreEntitySet="Tbl_Factores_Tecnicos">
+                <ScalarProperty Name="Id_Aprendiz" ColumnName="Id_Aprendiz" />
+                <ScalarProperty Name="Observacion_Aprendiz" ColumnName="Observacion_Aprendiz" />
+                <ScalarProperty Name="Observacion_Jefe" ColumnName="Observacion_Jefe" />
+                <ScalarProperty Name="Valoracion_Etapa_Productiva" ColumnName="Valoracion_Etapa_Productiva" />
+                <ScalarProperty Name="Documentacion_Etapa_Productiva" ColumnName="Documentacion_Etapa_Productiva" />
+                <ScalarProperty Name="Valoracion_Seguridad" ColumnName="Valoracion_Seguridad" />
+                <ScalarProperty Name="Seguridad_Ocupacional" ColumnName="Seguridad_Ocupacional" />
+                <ScalarProperty Name="Valoracion_Administracion" ColumnName="Valoracion_Administracion" />
+                <ScalarProperty Name="Administracion_Recursos" ColumnName="Administracion_Recursos" />
+                <ScalarProperty Name="Valoracion_Ambiental" ColumnName="Valoracion_Ambiental" />
+                <ScalarProperty Name="Responsabilidad_Ambiental" ColumnName="Responsabilidad_Ambiental" />
+                <ScalarProperty Name="Valoracion_Oportunidad" ColumnName="Valoracion_Oportunidad" />
+                <ScalarProperty Name="Oportunidad_Calidad" ColumnName="Oportunidad_Calidad" />
+                <ScalarProperty Name="Valoracion_Fortalecimiento" ColumnName="Valoracion_Fortalecimiento" />
+                <ScalarProperty Name="Fortalecimiento_Ocupacional" ColumnName="Fortalecimiento_Ocupacional" />
+                <ScalarProperty Name="Valoracion_Mejora" ColumnName="Valoracion_Mejora" />
+                <ScalarProperty Name="Mejora_Continua" ColumnName="Mejora_Continua" />
+                <ScalarProperty Name="Valoracion_Conocimiento" ColumnName="Valoracion_Conocimiento" />
+                <ScalarProperty Name="Transferencia_Conocimiento" ColumnName="Transferencia_Conocimiento" />
+                <ScalarProperty Name="Tipo_Informe" ColumnName="Tipo_Informe" />
+                <ScalarProperty Name="Id_Factores_Tecnicos" ColumnName="Id_Factores_Tecnicos" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_Fichas">
+            <EntityTypeMapping TypeName="practicas3Model.Tbl_Fichas">
+              <MappingFragment StoreEntitySet="Tbl_Fichas">
+                <ScalarProperty Name="Id_Programa" ColumnName="Id_Programa" />
+                <ScalarProperty Name="Numero_Ficha" ColumnName="Numero_Ficha" />
+                <ScalarProperty Name="Id_Ficha" ColumnName="Id_Ficha" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_Instructores">
+            <EntityTypeMapping TypeName="practicas3Model.Tbl_Instructores">
+              <MappingFragment StoreEntitySet="Tbl_Instructores">
+                <ScalarProperty Name="Id_Usuario" ColumnName="Id_Usuario" />
+                <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
+                <ScalarProperty Name="Nombres" ColumnName="Nombres" />
+                <ScalarProperty Name="Numero_Identificacion" ColumnName="Numero_Identificacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_Planeacion_Etapa_Productiva">
+            <EntityTypeMapping TypeName="practicas3Model.Tbl_Planeacion_Etapa_Productiva">
+              <MappingFragment StoreEntitySet="Tbl_Planeacion_Etapa_Productiva">
+                <ScalarProperty Name="Id_Aprendiz" ColumnName="Id_Aprendiz" />
+                <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
+                <ScalarProperty Name="Lugar" ColumnName="Lugar" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="Evidencias_Aprendizaje" ColumnName="Evidencias_Aprendizaje" />
+                <ScalarProperty Name="Actividades_A_Desarrollar" ColumnName="Actividades_A_Desarrollar" />
+                <ScalarProperty Name="Id_Planeacion" ColumnName="Id_Planeacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_Programas">
+            <EntityTypeMapping TypeName="practicas3Model.Tbl_Programas">
+              <MappingFragment StoreEntitySet="Tbl_Programas">
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Id_Programa" ColumnName="Id_Programa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_Roles">
+            <EntityTypeMapping TypeName="practicas3Model.Tbl_Roles">
+              <MappingFragment StoreEntitySet="Tbl_Roles">
+                <ScalarProperty Name="Rol" ColumnName="Rol" />
+                <ScalarProperty Name="Id_Rol" ColumnName="Id_Rol" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_Usuarios">
+            <EntityTypeMapping TypeName="practicas3Model.Tbl_Usuarios">
+              <MappingFragment StoreEntitySet="Tbl_Usuarios">
+                <ScalarProperty Name="Id_Rol" ColumnName="Id_Rol" />
+                <ScalarProperty Name="Contrasena" ColumnName="Contrasena" />
+                <ScalarProperty Name="NombreUsuario" ColumnName="NombreUsuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_Visitas">
+            <EntityTypeMapping TypeName="practicas3Model.Tbl_Visitas">
+              <MappingFragment StoreEntitySet="Tbl_Visitas">
+                <ScalarProperty Name="Numero_Ficha" ColumnName="Numero_Ficha" />
+                <ScalarProperty Name="Id_Instructor" ColumnName="Id_Instructor" />
+                <ScalarProperty Name="Id_Visita" ColumnName="Id_Visita" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

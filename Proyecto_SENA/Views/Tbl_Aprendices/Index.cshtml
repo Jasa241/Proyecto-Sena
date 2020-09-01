@@ -1,0 +1,76 @@
+﻿@model IEnumerable<Proyecto_SENA.Models.Tbl_Aprendices>
+
+@{
+    ViewBag.Title = "Aprendices";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>Aprendices</h2>
+
+<p>
+    @Html.ActionLink("Agregar aprendiz", "Create", null, new { @class = "btn btn-success" })
+</p>
+
+<table class="table">
+    <tr>
+        <th>
+            <label>Identificacion</label>
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nombres)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Apellidos)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Telefono)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Correo)
+        </th>
+        <th>
+            <label>Ficha</label>
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Numero_Identificacion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombres)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Apellidos)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Telefono)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Correo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tbl_Fichas.Numero_Ficha)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { id = item.Numero_Identificacion }, new { @class = "btn btn-primary" })
+                @Html.ActionLink("Parcial", "Details", new { id = item.Numero_Identificacion, etapa = 1 }, new { @class = "btn btn-info" })
+                @Html.ActionLink("Final", "Details", new { id = item.Numero_Identificacion, etapa = 2 }, new { @class = "btn btn-info" })
+                @{
+                    try
+                    {
+                        if (Session["Rol"].ToString() == "1")
+                        {
+                            @Html.ActionLink("Eliminar", "Delete", new { id = item.Numero_Identificacion }, new { @class = "btn btn-danger" })
+
+                        }
+                    }
+                    catch { }
+                }
+            </td>
+        </tr>
+    }
+
+</table>

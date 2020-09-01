@@ -1,0 +1,70 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Gestion de Practicas</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+           
+            <div class="mynavbar">
+                @Html.ActionLink("Gestion de Practicas", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+
+               @{
+                   try
+                   {
+                       if (Session["Rol"].ToString() == "1" || Session["Rol"].ToString() == "2")
+                       {
+                        @Html.ActionLink("Visitas", "Index", "Tbl_Visitas")
+                       }
+                   }
+                   catch { }
+                }
+                @{ 
+                    try
+                    {
+                        if (Session["Rol"].ToString() == "1")
+                        {
+                        <div class="mydropdown">
+                            <button class="mydropbtn">
+                                Generales
+                                <i class="fa fa-caret-down"></i>
+                            </button>
+                            <div class="mydropdown-content">
+                                @Html.ActionLink("Programas", "Index", "Tbl_Programas")
+                                @Html.ActionLink("Fichas", "Index", "Tbl_Fichas")
+                                @Html.ActionLink("Usuarios", "Index", "Tbl_Usuarios")
+                                @Html.ActionLink("Instructores", "Index", "Tbl_Instructores")
+                            </div>
+                        </div>
+                        }
+                    }
+                    catch { }
+                }
+                @Html.ActionLink("Cerrar Sesion", "LogOut", "Login")
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Gestion de Practicas SENA</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>

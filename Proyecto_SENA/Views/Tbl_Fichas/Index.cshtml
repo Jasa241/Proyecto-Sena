@@ -1,0 +1,38 @@
+﻿@model IEnumerable<Proyecto_SENA.Models.Tbl_Fichas>
+
+@{
+    ViewBag.Title = "Fichas";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Fichas</h2>
+
+<p>
+    @Html.ActionLink("Agregar ficha", "Create", null, new { @class = "btn btn-success"})
+</p>
+<table class="table">
+    <tr>
+        <th>
+            <label>Numero de ficha</label>
+        </th>
+        <th>
+            <label>Programa</label>
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Numero_Ficha)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Tbl_Programas.Nombre)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.Id_Ficha }, new { @class = "btn btn-primary"}) 
+        </td>
+    </tr>
+}
+
+</table>

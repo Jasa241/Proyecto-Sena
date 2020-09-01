@@ -1,0 +1,176 @@
+﻿@model Proyecto_SENA.Models.Tbl_Factores_Tecnicos
+
+@{
+    ViewBag.Title = "Agregar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Agregar</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h4>Factores tecnicos</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.Id_Aprendiz)
+    @Html.HiddenFor(model => model.Tipo_Informe)
+    @{
+        string Validar = ViewBag.Validar;
+        if (Validar != null)
+        {
+            <div class="alert alert-danger">@ViewBag.Validar </div>
+        }
+    }
+    <div class="form-group">
+        <label>Transferencia de conocimiento</label><br />
+        <p>
+            Demuestra las competencias especificas del prigrama de formacion en situaciones reales de trabajo.
+        </p>
+        <textarea class="form-control" rows="6" name="Transferencia_Conocimiento"></textarea>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="Valoracion_Conocimiento" value="Satisfactorio">
+            <label class="form-check-label">Satisfactorio</label>
+            <input class="form-check-input" type="radio" name="Valoracion_Conocimiento" value="Por Mejorar">
+            <label class="form-check-label">Por Mejorar</label>
+        </div>
+    </div>
+    <br />
+
+    <div class="form-group">
+        <label>Mejora continua</label><br />
+        <p>
+            Aporta al mejoramiento de los procesos propios de su desempeño.
+        </p>
+        <textarea class="form-control" rows="6" name="Mejora_Continua"></textarea>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="Valoracion_Mejora" value="Satisfactorio">
+            <label class="form-check-label">Satisfactorio</label>
+            <input class="form-check-input" type="radio" name="Valoracion_Mejora" value="Por Mejorar">
+            <label class="form-check-label">Por Mejorar</label>
+        </div>
+    </div>
+    <br />
+
+    <div class="form-group">
+        <label>Fortalecimiento ocupacional</label><br />
+        <p>
+            Autogestiona acciones que fortalezca su perfil ocupacional en el marco de su proyecto de vida.
+        </p>
+        <textarea class="form-control" rows="6" name="Fortalecimiento_Ocupacional"></textarea>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="Valoracion_Fortalecimiento" value="Satisfactorio">
+            <label class="form-check-label">Satisfactorio</label>
+            <input class="form-check-input" type="radio" name="Valoracion_Fortalecimiento" value="Por Mejorar">
+            <label class="form-check-label">Por Mejorar</label>
+        </div>
+    </div>
+    <br />
+
+    <div class="form-group">
+        <label>Oportunidad y calidad</label><br />
+        <p>
+            Presenta con oportunidad y calidad los productos generados en el desarrollo de sus funciones y actividades.
+        </p>
+        <textarea class="form-control" rows="6" name="Oportunidad_Calidad"></textarea>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="Valoracion_Oportunidad" value="Satisfactorio">
+            <label class="form-check-label">Satisfactorio</label>
+            <input class="form-check-input" type="radio" name="Valoracion_Oportunidad" value="Por Mejorar">
+            <label class="form-check-label">Por Mejorar</label>
+        </div>
+    </div>
+    <br />
+
+    <div class="form-group">
+        <label>Responsabilidad ambiental</label><br />
+        <p>
+            Administra los recursos para el desarrollo de sus actividades con criterios de responsabilidad ambiental.
+        </p>
+        <textarea class="form-control" rows="6" name="Responsabilidad_Ambiental"></textarea>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="Valoracion_Ambiental" value="Satisfactorio">
+            <label class="form-check-label">Satisfactorio</label>
+            <input class="form-check-input" type="radio" name="Valoracion_Ambiental" value="Por Mejorar">
+            <label class="form-check-label">Por Mejorar</label>
+        </div>
+    </div>
+    <br />
+
+    <div class="form-group">
+        <label>Administracion de recursos</label><br />
+        <p>
+            Utiliza de manera racional los materiales, equipos y herramientas suministrados para el desempeño de sus actividades o funciones.
+        </p>
+        <textarea class="form-control" rows="6" name="Administracion_Recursos"></textarea>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="Valoracion_Administracion" value="Satisfactorio">
+            <label class="form-check-label">Satisfactorio</label>
+            <input class="form-check-input" type="radio" name="Valoracion_Administracion" value="Por Mejorar">
+            <label class="form-check-label">Por Mejorar</label>
+        </div>
+    </div>
+    <br />
+
+    <div class="form-group">
+        <label>Seguridad ocupacional e industrial</label><br />
+        <p>
+            Utiliza los elementos de seguridad y salud ocupacional de acuerdo con la normatividad vigente establecida para sus actividades o funciones.
+        </p>
+        <textarea class="form-control" rows="6" name="Seguridad_Ocupacional"></textarea>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="Valoracion_Seguridad" value="Satisfactorio">
+            <label class="form-check-label">Satisfactorio</label>
+            <input class="form-check-input" type="radio" name="Valoracion_Seguridad" value="Por Mejorar">
+            <label class="form-check-label">Por Mejorar</label>
+        </div>
+    </div>
+    <br />
+
+    <div class="form-group">
+        <label>Documentacion etapa productiva</label><br />
+        <p>
+            Actualiza permanentemente el portafolio de evidencias.
+        </p>
+        <textarea class="form-control" rows="6" name="Documentacion_Etapa_Productiva"></textarea>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="Valoracion_Etapa_Productiva" value="Satisfactorio">
+            <label class="form-check-label">Satisfactorio</label>
+            <input class="form-check-input" type="radio" name="Valoracion_Etapa_Productiva" value="Por Mejorar">
+            <label class="form-check-label">Por Mejorar</label>
+        </div>
+    </div>
+    <br />
+
+    <div class="form-group">
+        <label>Observaciones del responsable ente coformador</label><br />
+        <p>
+            Sus observaciones proporcionan informacion que aporta al mejoramiento de la calidad de la formacion profesional integral
+        </p>
+        <textarea class="form-control" rows="6" name="Observacion_Jefe"></textarea>
+    </div>
+    <br />
+
+    <div class="form-group">
+        <label>Observaciones del aprendiz</label><br />
+        <textarea class="form-control" rows="6" name="Observacion_Aprendiz"></textarea>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Agregar" class="btn btn-success" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Volver", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
