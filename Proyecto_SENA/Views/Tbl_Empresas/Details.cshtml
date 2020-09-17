@@ -4,67 +4,16 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Empresa</h2>
-
+<h2>Detalles</h2>
+<h4>Empresa</h4>
 <div>
-    <dl class="dl-horizontal">
-        <dt>
-            <label>Empresa</label>
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(Model => Model.Razon_Social)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Nit)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Nit)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Direccion)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Direccion)
-        </dd>
-
-        <dt>
-            <label>Jefe</label>
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Nombre_Jefe)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Cargo)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Cargo)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Telefono)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Telefono)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Correo)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Correo)
-        </dd>
-
-    </dl>
+    <label>Empresa: </label> @Html.DisplayFor(model => model.Razon_Social)<br />
+    <label>Nit: </label> @Html.DisplayFor(model => model.Nit)<br />
+    <label>Direccion: </label> @Html.DisplayFor(model => model.Direccion)<br />
+    <label>Jefe: </label> @Html.DisplayFor(model => model.Nombre_Jefe)<br />
+    <label>Cargo: </label> @Html.DisplayFor(model => model.Cargo)<br />
+    <label>Telefono: </label> @Html.DisplayFor(model => model.Telefono)<br />
+    <label>Correo: </label> @Html.DisplayFor(model => model.Correo)<br />
 </div>
 <p>
     @Html.ActionLink("Editar", "Edit", new { id = Model.Id_Empresa, etapa = ViewBag.etapa}) |

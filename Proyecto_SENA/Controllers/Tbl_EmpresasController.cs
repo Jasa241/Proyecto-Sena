@@ -27,8 +27,8 @@ namespace Proyecto_SENA.Controllers
                           select e;
             foreach (var e in empresa)
             {
-                if(e.Id_Aprendiz == id)
-                   ide = e.Id_Empresa;
+                if (e.Id_Aprendiz == id)
+                    ide = e.Id_Empresa;
             }
             Tbl_Empresas tbl_Empresas = db.Tbl_Empresas.Find(ide);
 
@@ -41,8 +41,10 @@ namespace Proyecto_SENA.Controllers
         }
 
         // GET: Tbl_Empresas/Create
-        public ActionResult Create()
+        public ActionResult Create(int? Id_Aprendiz)
         {
+            Tbl_Empresas tbl_Empresas = new Tbl_Empresas();
+            tbl_Empresas.Id_Aprendiz = Id_Aprendiz;
             return View();
         }
 
@@ -51,28 +53,30 @@ namespace Proyecto_SENA.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id_Empresa,Razon_Social,Nit,Direccion,Nombre_Jefe,Cargo,Telefono,Correo,Id_Aprendiz")] Tbl_Empresas tbl_Empresas)
+        public ActionResult Create([Bind(Include = "Razon_Social,Nit,Direccion,Nombre_Jefe,Cargo,Telefono,Correo,Id_Aprendiz")] Tbl_Empresas tbl_Empresas)
         {
             if (ModelState.IsValid && tbl_Empresas.Nit != null && tbl_Empresas.Nombre_Jefe != null && tbl_Empresas.Cargo != null && tbl_Empresas.Correo != null && tbl_Empresas.Telefono != null && tbl_Empresas.Direccion != null && tbl_Empresas.Razon_Social != null)
             {
-                int ida = 0;
-                int? ficha = 0;
-                var aprendiz = from a in db.Tbl_Aprendices select a;
-
-                foreach (var a in aprendiz)
+                if (Metodos.Numeros(tbl_Empresas.Telefono) && Metodos.Cadena(tbl_Empresas.Nombre_Jefe) && Metodos.Cadena(tbl_Empresas.Cargo))
                 {
-                    if (a.Numero_Identificacion == tbl_Empresas.Id_Aprendiz)
-                        ida = a.Numero_Identificacion;
-                        ficha = a.Id_Ficha;
-                }
-                tbl_Empresas.Id_Aprendiz = ida;
-                db.Tbl_Empresas.Add(tbl_Empresas);
-                db.SaveChanges();
+                    int? ficha = 0;
+                    var aprendiz = from a in db.Tbl_Aprendices select a;
 
-                if (Session["Rol"].ToString() == "1" || Session["Rol"].ToString() == "2")
-                    return RedirectToAction("Index", "Tbl_Aprendices", new { ficha });
-                else
-                    return RedirectToAction("Index", "Login");
+                    foreach (var a in aprendiz)
+                    {
+                        if (a.Numero_Identificacion == tbl_Empresas.Id_Aprendiz)
+                            ficha = a.Id_Ficha;
+                    }
+
+                    db.Tbl_Empresas.Add(tbl_Empresas);
+                    db.SaveChanges();
+
+                    if (Session["Rol"].ToString() == "1" || Session["Rol"].ToString() == "2")
+                        return RedirectToAction("Index", "Tbl_Aprendices", new { ficha });
+                    else
+                        return RedirectToAction("Index", "Login");
+                }
+                else { ViewBag.Validar = "Llene los campos con el formato correcto"; }
             }
             else { ViewBag.Validar = "Llene todos los campos"; }
 
@@ -87,6 +91,7 @@ namespace Proyecto_SENA.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Tbl_Empresas tbl_Empresas = db.Tbl_Empresas.Find(id);
+            tbl_Empresas.Id_Aprendiz = tbl_Empresas.Id_Aprendiz;
             if (tbl_Empresas == null)
             {
                 return HttpNotFound();
@@ -99,30 +104,27 @@ namespace Proyecto_SENA.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit( [Bind(Include = "Id_Empresa,Razon_Social,Nit,Direccion,Nombre_Jefe,Cargo,Telefono,Correo")] Tbl_Empresas tbl_Empresas)
+        public ActionResult Edit([Bind(Include = "Id_Empresa,Razon_Social,Nit,Direccion,Nombre_Jefe,Cargo,Telefono,Correo,Id_Aprendiz")] Tbl_Empresas tbl_Empresas)
         {
             if (ModelState.IsValid)
             {
-                int? ida = 0;
-                int? idf = 0;
-                var empresa = from e in db.Tbl_Empresas where e.Id_Empresa == tbl_Empresas.Id_Empresa select e.Id_Aprendiz;
-
-                foreach (var e in empresa)
+                if (Metodos.Numeros(tbl_Empresas.Telefono) && Metodos.Cadena(tbl_Empresas.Nombre_Jefe) && Metodos.Cadena(tbl_Empresas.Cargo))
                 {
-                    ida = e;
+                   
+                    int? Id_Ficha = 0;
+                    
+                    db.Entry(tbl_Empresas).State = EntityState.Modified;
+                    db.SaveChanges();
+
+                    var ficha = from f in db.Tbl_Aprendices where f.Numero_Identificacion == tbl_Empresas.Id_Aprendiz select f.Id_Ficha;
+                    foreach (var f in ficha)
+                    {
+                        Id_Ficha = f;
+                    }
+
+                    return RedirectToAction("Index", "Tbl_Aprendices", new { ficha = Id_Ficha });
                 }
-
-                tbl_Empresas.Id_Aprendiz = ida;
-                db.Entry(tbl_Empresas).State = EntityState.Modified;
-                db.SaveChanges();
-
-                var ficha = from f in db.Tbl_Aprendices where f.Numero_Identificacion == ida select f.Id_Ficha;
-                foreach (var f in ficha)
-                {
-                    idf = f;
-                }
-
-                return RedirectToAction("Index", "Tbl_Aprendices", new { ficha = idf });
+                else { ViewBag.Validar = "Llene los campos con el formato correcto"; }
             }
             return View(tbl_Empresas);
 

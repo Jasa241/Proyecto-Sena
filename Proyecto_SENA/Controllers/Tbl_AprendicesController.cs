@@ -4,8 +4,11 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Text.RegularExpressions;
 using System.Web;
+using System.Web.Configuration;
 using System.Web.Mvc;
+using System.Web.WebSockets;
 using Antlr.Runtime;
 using Proyecto_SENA.Models;
 
@@ -19,7 +22,6 @@ namespace Proyecto_SENA.Controllers
         // GET: Tbl_Aprendices
         public ActionResult Index(int? ficha)
         {
-
             if (Session["Rol"].ToString() != "1" && Session["Rol"].ToString() != "2")
             {
                 return RedirectToAction("Index", "Home");
@@ -66,27 +68,17 @@ namespace Proyecto_SENA.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id_Aprendiz,Numero_Identificacion,Nombres,Apellidos,Id_Ficha,Telefono,Correo,Id_Empresa")] Tbl_Aprendices tbl_Aprendices)
+        public ActionResult Create([Bind(Include = "Numero_Identificacion,Nombres,Apellidos,Id_Ficha,Telefono,Correo,Id_Empresa")] Tbl_Aprendices tbl_Aprendices)
         {
             if (ModelState.IsValid && tbl_Aprendices.Nombres != null && tbl_Aprendices.Apellidos != null && tbl_Aprendices.Telefono != null && tbl_Aprendices.Correo != null)
             {
-                bool validar = false;
-
-                var aprendiz = from a in db.Tbl_Aprendices select a;
-
-                foreach (var a in aprendiz)
-                {
-                    if (a.Numero_Identificacion == tbl_Aprendices.Numero_Identificacion)
-                        validar = true;
-                }
-
-                if (validar != true)
+                if (Metodos.Numeros(Convert.ToString(tbl_Aprendices.Numero_Identificacion)) && Metodos.Cadena(tbl_Aprendices.Nombres) && Metodos.Cadena(tbl_Aprendices.Apellidos) && Metodos.Numeros(tbl_Aprendices.Telefono))
                 {
                     db.Tbl_Aprendices.Add(tbl_Aprendices);
                     db.SaveChanges();
                     return RedirectToAction("Create", "Tbl_Empresas");
                 }
-                else { ViewBag.Validar = "el numero de identificacion ya existe"; }
+                else { ViewBag.Validar = "Llene los campos con el formato correcto"; }
             }
             else { ViewBag.Validar = "Llene todos los campos"; }
 
@@ -97,12 +89,12 @@ namespace Proyecto_SENA.Controllers
         // GET: Tbl_Aprendices/Edit/5
         public ActionResult Edit(int? id)
         {
-          
-                if (Session["Rol"].ToString() != "1" && Session["Rol"].ToString() != "2")
-                {
-                    return RedirectToAction("Index", "Home");
-                }
-           
+
+            if (Session["Rol"].ToString() != "1" && Session["Rol"].ToString() != "2")
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -121,13 +113,17 @@ namespace Proyecto_SENA.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id_Aprendiz,Numero_Identificacion,Nombres,Apellidos,Id_Ficha,Telefono,Correo,Id_Centro,Id_Empresa")] Tbl_Aprendices tbl_Aprendices)
+        public ActionResult Edit([Bind(Include = "Numero_Identificacion,Nombres,Apellidos,Id_Ficha,Telefono,Correo,Id_Centro,Id_Empresa")] Tbl_Aprendices tbl_Aprendices)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(tbl_Aprendices).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index", new { ficha = tbl_Aprendices.Id_Ficha });
+                if (Metodos.Cadena(tbl_Aprendices.Nombres) && Metodos.Cadena(tbl_Aprendices.Apellidos) && Metodos.Numeros(tbl_Aprendices.Telefono))
+                {
+                    db.Entry(tbl_Aprendices).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Index", new { ficha = tbl_Aprendices.Id_Ficha });
+                }
+                else { ViewBag.Validar = "Llene los campos con el formato correcto"; }
             }
             ViewBag.Id_Ficha = new SelectList(db.Tbl_Fichas, "Id_Ficha", "Numero_Ficha", tbl_Aprendices.Id_Ficha);
             return View(tbl_Aprendices);
@@ -136,12 +132,12 @@ namespace Proyecto_SENA.Controllers
         // GET: Tbl_Aprendices/Delete/5
         public ActionResult Delete(int? id)
         {
-          
-                if (Session["Rol"].ToString() != "1")
-                {
-                    return RedirectToAction("Index", "Home");
-                }
-           
+
+            if (Session["Rol"].ToString() != "1")
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -200,8 +196,8 @@ namespace Proyecto_SENA.Controllers
             try
             {
                 var Id_Factores_Actitud = (from f in db.Tbl_Actitud_Comportamiento
-                           where f.Id_Aprendiz == id && f.Tipo_Informe == etapa
-                           select f).First();
+                                           where f.Id_Aprendiz == id && f.Tipo_Informe == etapa
+                                           select f).First();
 
                 Id_Actitud = Id_Factores_Actitud.Id_Actitud;
             }
@@ -218,8 +214,8 @@ namespace Proyecto_SENA.Controllers
             try
             {
                 var Id_Factores_Tecnicos = (from f in db.Tbl_Factores_Tecnicos
-                           where f.Id_Aprendiz == id && f.Tipo_Informe == etapa
-                           select f).First();
+                                            where f.Id_Aprendiz == id && f.Tipo_Informe == etapa
+                                            select f).First();
 
                 Id_Tecnicos = Id_Factores_Tecnicos.Id_Factores_Tecnicos;
             }
@@ -236,8 +232,8 @@ namespace Proyecto_SENA.Controllers
             try
             {
                 var Id_Etapa_Productiva = (from f in db.Tbl_Evaluacion_Etapa_Productiva
-                                            where f.Id_Aprendiz == id
-                                            select f).First();
+                                           where f.Id_Aprendiz == id
+                                           select f).First();
 
                 Id_Evaluacion = Id_Etapa_Productiva.Id_Evaluacion;
             }

@@ -5,15 +5,12 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <h2>Detalles</h2>
-<hr />
 <h4>Factores actitudinales y comportamentales </h4>
 <div>
     <label>Tipo informe: </label> @{
         string text;
         if (Model.Tipo_Informe == 1)
-        {
-            text = "Parcial";
-        }
+        { text = "Parcial"; }
         else
         { text = "Final"; }
         @text;

@@ -6,15 +6,12 @@
 }
 
 <h2>Detalles</h2>
-
 <h4>Planeacion Etapa Productiva</h4>
-
-<hr />
 
 <div>
     <label>Actividades a desarrollar: </label> @Html.DisplayFor(model => model.Actividades_A_Desarrollar)<br />
     <label>Evidencia de aprendizaje: </label> @Html.DisplayFor(model => model.Evidencias_Aprendizaje)<br />
-    <label>Fecha: </label>@{  var date = new DateTime();
+    <label>Fecha: </label>@{ var date = new DateTime();
         date = Convert.ToDateTime(Model.Fecha);
         @date.ToShortDateString()
     }<br />

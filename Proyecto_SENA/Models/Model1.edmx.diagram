@@ -11,7 +11,7 @@
         <EntityTypeShape EntityType="practicas3Model.Tbl_Evaluacion_Etapa_Productiva" Width="1.5" PointX="7.5" PointY="19.75" />
         <EntityTypeShape EntityType="practicas3Model.Tbl_Factores_Tecnicos" Width="1.5" PointX="7.5" PointY="6" />
         <EntityTypeShape EntityType="practicas3Model.Tbl_Fichas" Width="1.5" PointX="3" PointY="11.875" />
-        <EntityTypeShape EntityType="practicas3Model.Tbl_Instructores" Width="1.5" PointX="3" PointY="8.875" />
+        <!--<EntityTypeShape EntityType="practicas3Model.Tbl_Instructores" Width="1.5" PointX="3" PointY="8.875" />-->
         <EntityTypeShape EntityType="practicas3Model.Tbl_Planeacion_Etapa_Productiva" Width="1.5" PointX="7.5" PointY="16.5" />
         <EntityTypeShape EntityType="practicas3Model.Tbl_Programas" Width="1.5" PointX="0.75" PointY="12.25" />
         <EntityTypeShape EntityType="practicas3Model.Tbl_Roles" Width="1.5" PointX="1.5" PointY="6.25" />

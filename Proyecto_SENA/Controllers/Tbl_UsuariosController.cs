@@ -18,17 +18,12 @@ namespace Proyecto_SENA.Controllers
         // GET: Tbl_Usuarios
         public ActionResult Index()
         {
-            try
-            {
-                if (Session["Rol"].ToString() != "1")
-                {
-                    return RedirectToAction("Index", "Home");
-                }
-            }
-            catch
+
+            if (Session["Rol"].ToString() != "1")
             {
                 return RedirectToAction("Index", "Home");
             }
+
             var tbl_Usuarios = db.Tbl_Usuarios.Include(t => t.Tbl_Roles);
             return View(tbl_Usuarios.ToList());
         }
@@ -36,17 +31,12 @@ namespace Proyecto_SENA.Controllers
         // GET: Tbl_Usuarios/Create
         public ActionResult Create()
         {
-            try
-            {
-                if (Session["Rol"].ToString() != "1")
-                {
-                    return RedirectToAction("Index", "Home");
-                }
-            }
-            catch
+
+            if (Session["Rol"].ToString() != "1")
             {
                 return RedirectToAction("Index", "Home");
             }
+
             ViewBag.Id_Rol = new SelectList(db.Tbl_Roles, "Id_Rol", "Rol");
             return View();
         }
@@ -60,17 +50,21 @@ namespace Proyecto_SENA.Controllers
         {
             if (ModelState.IsValid && tbl_Usuarios.NombreUsuario != null && tbl_Usuarios.Contrasena != null)
             {
-                try
+                if (Metodos.Cadena(tbl_Usuarios.NombreUsuario))
                 {
-                    db.Tbl_Usuarios.Add(tbl_Usuarios);
-                    tbl_Usuarios.Contrasena = Encriptar(tbl_Usuarios.Contrasena);
-                    db.SaveChanges();
-                    return RedirectToAction("Index");
+                    try
+                    {
+                        db.Tbl_Usuarios.Add(tbl_Usuarios);
+                        tbl_Usuarios.Contrasena = Encriptar(tbl_Usuarios.Contrasena);
+                        db.SaveChanges();
+                        return RedirectToAction("Index");
+                    }
+                    catch
+                    {
+                        ViewBag.Validacion = "Nombre de usuario existente";
+                    }
                 }
-                catch
-                {
-                    ViewBag.Validacion = "Nombre de usuario existente";
-                }
+                else { ViewBag.Validacion = "Llene los campos con el formato correcto"; }
             }
             else
             {
@@ -84,17 +78,12 @@ namespace Proyecto_SENA.Controllers
         // GET: Tbl_Usuarios/Edit/5
         public ActionResult Edit(string id)
         {
-            //try
-            //{
-                if (Session["Rol"].ToString() != "1")
-                {
-                    return RedirectToAction("Index", "Home");
-                }
-            //}
-            //catch
-            //{
-            //    return RedirectToAction("Index", "Home");
-            //}
+
+            if (Session["Rol"].ToString() != "1")
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -135,17 +124,12 @@ namespace Proyecto_SENA.Controllers
         // GET: Tbl_Usuarios/Delete/5
         public ActionResult Delete(string id)
         {
-            try
-            {
-                if (Session["Rol"].ToString() != "1")
-                {
-                    return RedirectToAction("Index", "Home");
-                }
-            }
-            catch
+
+            if (Session["Rol"].ToString() != "1")
             {
                 return RedirectToAction("Index", "Home");
             }
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);

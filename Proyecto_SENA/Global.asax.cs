@@ -22,6 +22,7 @@ namespace Proyecto_SENA
         {
             Session["Rol"] = null;
             Session["Id_Usuario"] = null;
+            Session["Id_Antiguo"] = null;
         }
     }
 }

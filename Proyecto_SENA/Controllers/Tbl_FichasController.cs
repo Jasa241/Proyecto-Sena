@@ -18,17 +18,11 @@ namespace Proyecto_SENA.Controllers
         // GET: Tbl_Fichas
         public ActionResult Index()
         {
-            try
-            {
-                if (Session["Rol"].ToString() != "1")
+              if (Session["Rol"].ToString() != "1")
                 {
                     return RedirectToAction("Index", "Home");
                 }
-            }
-            catch
-            {
-                return RedirectToAction("Index", "Home");
-            }
+          
             var tbl_Fichas = db.Tbl_Fichas.Include(t => t.Tbl_Programas);
             return View(tbl_Fichas.ToList());
         }
@@ -36,17 +30,12 @@ namespace Proyecto_SENA.Controllers
         // GET: Tbl_Fichas/Create
         public ActionResult Create()
         {
-            try
-            {
+         
                 if (Session["Rol"].ToString() != "1")
                 {
                     return RedirectToAction("Index", "Home");
                 }
-            }
-            catch
-            {
-                return RedirectToAction("Index", "Home");
-            }
+           
             ViewBag.Id_Programa = new SelectList(db.Tbl_Programas, "Id_Programa", "Nombre");
             return View();
         }
@@ -60,9 +49,13 @@ namespace Proyecto_SENA.Controllers
         {
             if (ModelState.IsValid && tbl_Fichas.Numero_Ficha != null)
             {
-                db.Tbl_Fichas.Add(tbl_Fichas);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (Metodos.Numeros(Convert.ToString(tbl_Fichas.Numero_Ficha)))
+                {
+                    db.Tbl_Fichas.Add(tbl_Fichas);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                else { ViewBag.Validacion = "Llene los campos con el formato correcto"; }
             }
             else 
             {
@@ -76,17 +69,11 @@ namespace Proyecto_SENA.Controllers
         // GET: Tbl_Fichas/Edit/5
         public ActionResult Edit(int? id)
         {
-            try
-            {
                 if (Session["Rol"].ToString() != "1")
                 {
                     return RedirectToAction("Index", "Home");
                 }
-            }
-            catch
-            {
-                return RedirectToAction("Index", "Home");
-            }
+          
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -109,9 +96,13 @@ namespace Proyecto_SENA.Controllers
         {
             if (ModelState.IsValid && tbl_Fichas.Numero_Ficha != null)
             {
-                db.Entry(tbl_Fichas).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (Metodos.Numeros(Convert.ToString(tbl_Fichas.Numero_Ficha)))
+                {
+                    db.Entry(tbl_Fichas).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                else { ViewBag.Validacion = "Llene los campos con el formato correcto"; }
             }
             else
             {

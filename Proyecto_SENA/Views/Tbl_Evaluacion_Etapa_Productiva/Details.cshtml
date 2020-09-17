@@ -4,40 +4,16 @@
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<h2>Details</h2>
-
+<h2>Detalles</h2>
+<h4>Evaluacion Etapa Productiva</h4>
 <div>
-    <h4>Tbl_Evaluacion_Etapa_Productiva</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Juicio_Evaluacion)
-        </dt>
+    <label>Juicio de evaluacion: </label> @Html.DisplayFor(model => model.Juicio_Evaluacion)<br />
+    <label>Reconocimientos: </label> @Html.DisplayFor(model => model.Reconocimientos)<br />
+    <label>Aprendiz: </label> @Html.DisplayFor(model => model.Tbl_Aprendices.Nombres) @Html.DisplayFor(model => model.Tbl_Aprendices.Apellidos)<br />
+    <label>Identificacion: </label> @Html.DisplayFor(model => model.Tbl_Aprendices.Numero_Identificacion)<br />
 
-        <dd>
-            @Html.DisplayFor(model => model.Juicio_Evaluacion)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Reconocimientos)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Reconocimientos)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Tbl_Aprendices.Numero_Identificacion)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Tbl_Aprendices.Numero_Identificacion)
-        </dd>
-
-    </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id_Evaluacion }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Editar", "Edit", new { id = Model.Id_Evaluacion }) |
+    @Html.ActionLink("Volver", "Index")
 </p>
