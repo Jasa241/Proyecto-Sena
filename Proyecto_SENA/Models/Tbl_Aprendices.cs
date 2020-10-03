@@ -11,7 +11,8 @@ namespace Proyecto_SENA.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Tbl_Aprendices
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -23,14 +24,36 @@ namespace Proyecto_SENA.Models
             this.Tbl_Factores_Tecnicos = new HashSet<Tbl_Factores_Tecnicos>();
             this.Tbl_Planeacion_Etapa_Productiva = new HashSet<Tbl_Planeacion_Etapa_Productiva>();
         }
-    
+
+        [Required(ErrorMessage = "Campo obligatorio")]
+        [RegularExpression(@"\d{7,}$",
+            ErrorMessage = "Llene los campos de forma correcta <br/> " +
+            "Las cadenas deben contener minimo 3 caracteres y los numeros minimo 7")]
         public int Numero_Identificacion { get; set; }
+
+        [Required(ErrorMessage = "Campo obligatorio")]
+        [RegularExpression(@"^[a-zA-ZÀ-ÿ\u00f1\u00d1\s]{3,}$",
+            ErrorMessage = "Llene los campos de forma correcta <br/> " +
+            "Las cadenas deben contener minimo 3 caracteres y los numeros minimo 7")]
         public string Nombres { get; set; }
+
+        [Required(ErrorMessage = "Campo obligatorio")]
+        [RegularExpression(@"^[a-zA-ZÀ-ÿ\u00f1\u00d1\s]{3,}$",
+            ErrorMessage = "Llene los campos de forma correcta <br/> " +
+            "Las cadenas deben contener minimo 3 caracteres y los numeros minimo 7")]
         public string Apellidos { get; set; }
         public Nullable<int> Id_Ficha { get; set; }
+
+        [Required(ErrorMessage = "Campo obligatorio")]
+        [RegularExpression(@"\d{7,}$",
+            ErrorMessage = "Llene los campos de forma correcta <br/> " +
+            "Las cadenas deben contener minimo 3 caracteres y los numeros minimo 7")]
         public string Telefono { get; set; }
+
+        [Required(ErrorMessage = "Campo obligatorio")]
+        [EmailAddress(ErrorMessage = "Llene los campos con el formato correcto")]
         public string Correo { get; set; }
-    
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Tbl_Actitud_Comportamiento> Tbl_Actitud_Comportamiento { get; set; }
         public virtual Tbl_Fichas Tbl_Fichas { get; set; }

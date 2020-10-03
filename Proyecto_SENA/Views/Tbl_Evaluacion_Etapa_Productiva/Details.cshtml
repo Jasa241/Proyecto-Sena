@@ -15,5 +15,5 @@
 </div>
 <p>
     @Html.ActionLink("Editar", "Edit", new { id = Model.Id_Evaluacion }) |
-    @Html.ActionLink("Volver", "Index")
+    @Html.ActionLink("Volver", "Back", new { Id_Aprendiz = Model.Tbl_Aprendices.Numero_Identificacion, etapa = ViewBag.etapa })
 </p>

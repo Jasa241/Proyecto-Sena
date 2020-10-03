@@ -11,23 +11,74 @@ namespace Proyecto_SENA.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Tbl_Actitud_Comportamiento
     {
         public int Id_Actitud { get; set; }
         public Nullable<int> Tipo_Informe { get; set; }
+
+        [Required(ErrorMessage = "Campo obligatorio")]
+        [RegularExpression(@"^[a-zA-ZÀ-ÿ0-9\u00f1\u00d1\s]{3,}$",
+            ErrorMessage = "Llene los campos de forma correcta <br/> " +
+            "Las cadenas deben contener minimo 3 caracteres y los numeros minimo 7")]
         public string Relaciones_Interpersonales { get; set; }
+
+        [Required(ErrorMessage = "Campo obligatorio")]
+        [RegularExpression(@"^[a-zA-ZÀ-ÿ0-9\u00f1\u00d1\s]{3,}$",
+            ErrorMessage = "Llene los campos de forma correcta <br/> " +
+            "Las cadenas deben contener minimo 3 caracteres y los numeros minimo 7")]
         public string Valoracion_Relaciones { get; set; }
+
+        [Required(ErrorMessage = "Campo obligatorio")]
+        [RegularExpression(@"^[a-zA-ZÀ-ÿ0-9\u00f1\u00d1\s]{3,}$",
+            ErrorMessage = "Llene los campos de forma correcta <br/> " +
+            "Las cadenas deben contener minimo 3 caracteres y los numeros minimo 7")]
         public string TrabajoEnEquipo { get; set; }
+
+        [Required(ErrorMessage = "Campo obligatorio")]
+        [RegularExpression(@"^[a-zA-ZÀ-ÿ0-9\u00f1\u00d1\s]{3,}$",
+            ErrorMessage = "Llene los campos de forma correcta <br/> " +
+            "Las cadenas deben contener minimo 3 caracteres y los numeros minimo 7")]
         public string Valoracion_Trabajo { get; set; }
+
+        [Required(ErrorMessage = "Campo obligatorio")]
+        [RegularExpression(@"^[a-zA-ZÀ-ÿ0-9\u00f1\u00d1\s]{3,}$",
+            ErrorMessage = "Llene los campos de forma correcta <br/> " +
+            "Las cadenas deben contener minimo 3 caracteres y los numeros minimo 7")]
         public string Solucion_De_Problemas { get; set; }
+
+        [Required(ErrorMessage = "Campo obligatorio")]
+        [RegularExpression(@"^[a-zA-ZÀ-ÿ0-9\u00f1\u00d1\s]{3,}$",
+            ErrorMessage = "Llene los campos de forma correcta <br/> " +
+            "Las cadenas deben contener minimo 3 caracteres y los numeros minimo 7")]
         public string Valoracion_Solucion { get; set; }
+
+        [Required(ErrorMessage = "Campo obligatorio")]
+        [RegularExpression(@"^[a-zA-ZÀ-ÿ0-9\u00f1\u00d1\s]{3,}$",
+            ErrorMessage = "Llene los campos de forma correcta <br/> " +
+            "Las cadenas deben contener minimo 3 caracteres y los numeros minimo 7")]
         public string Cumplimiento { get; set; }
+
+        [Required(ErrorMessage = "Campo obligatorio")]
+        [RegularExpression(@"^[a-zA-ZÀ-ÿ0-9\u00f1\u00d1\s]{3,}$",
+            ErrorMessage = "Llene los campos de forma correcta <br/> " +
+            "Las cadenas deben contener minimo 3 caracteres y los numeros minimo 7")]
         public string Valoracion_Cumplimiento { get; set; }
+
+        [Required(ErrorMessage = "Campo obligatorio")]
+        [RegularExpression(@"^[a-zA-ZÀ-ÿ0-9\u00f1\u00d1\s]{3,}$",
+            ErrorMessage = "Llene los campos de forma correcta <br/> " +
+            "Las cadenas deben contener minimo 3 caracteres y los numeros minimo 7")]
         public string Organizacion { get; set; }
+
+        [Required(ErrorMessage = "Campo obligatorio")]
+        [RegularExpression(@"^[a-zA-ZÀ-ÿ0-9\u00f1\u00d1\s]{3,}$",
+            ErrorMessage = "Llene los campos de forma correcta <br/> " +
+            "Las cadenas deben contener minimo 3 caracteres y los numeros minimo 7")]
         public string Valoracion_Organizacion { get; set; }
         public Nullable<int> Id_Aprendiz { get; set; }
-    
+
         public virtual Tbl_Aprendices Tbl_Aprendices { get; set; }
     }
 }

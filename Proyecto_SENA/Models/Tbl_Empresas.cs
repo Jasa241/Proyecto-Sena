@@ -11,16 +11,50 @@ namespace Proyecto_SENA.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Tbl_Empresas
     {
         public int Id_Empresa { get; set; }
+
+        [Required(ErrorMessage = "Campo obligatorio")]
+        [RegularExpression(@"^[a-zA-ZÀ-ÿ\u00f1\u00d1\s]{3,}$",
+            ErrorMessage = "Llene los campos de forma correcta <br/> " +
+            "Las cadenas deben contener minimo 3 caracteres y los numeros minimo 7")]
         public string Razon_Social { get; set; }
+
+        [Required(ErrorMessage = "Campo obligatorio")]
+        [RegularExpression(@"^[a-zA-ZÀ-ÿ0-9\u00f1\u00d1\s]{3,}$",
+            ErrorMessage = "Llene los campos de forma correcta <br/> " +
+            "Las cadenas deben contener minimo 3 caracteres y los numeros minimo 7")]
         public string Nit { get; set; }
+
+        [Required(ErrorMessage = "Campo obligatorio")]
+        [RegularExpression(@"^[a-zA-ZÀ-ÿ0-9\u00f1\u00d1\s]{3,}$",
+            ErrorMessage = "Llene los campos de forma correcta <br/> " +
+            "Las cadenas deben contener minimo 3 caracteres y los numeros minimo 7")]
         public string Direccion { get; set; }
+
+        [Required(ErrorMessage = "Campo obligatorio")]
+        [RegularExpression(@"^[a-zA-ZÀ-ÿ\u00f1\u00d1\s]{3,}$",
+            ErrorMessage = "Llene los campos de forma correcta <br/> " +
+            "Las cadenas deben contener minimo 3 caracteres y los numeros minimo 7")]
         public string Nombre_Jefe { get; set; }
+
+        [Required(ErrorMessage = "Campo obligatorio")]
+        [RegularExpression(@"^[a-zA-ZÀ-ÿ\u00f1\u00d1\s]{3,}$",
+            ErrorMessage = "Llene los campos de forma correcta <br/> " +
+            "Las cadenas deben contener minimo 3 caracteres y los numeros minimo 7")]
         public string Cargo { get; set; }
+
+        [Required(ErrorMessage = "Campo obligatorio")]
+        [RegularExpression(@"\d{7,}$",
+            ErrorMessage = "Llene los campos de forma correcta <br/> " +
+            "Las cadenas deben contener minimo 3 caracteres y los numeros minimo 7")]
         public string Telefono { get; set; }
+
+        [Required(ErrorMessage = "Campo obligatorio")]
+        [EmailAddress(ErrorMessage = "Llene los campos con el formato correcto")]
         public string Correo { get; set; }
         public Nullable<int> Id_Aprendiz { get; set; }
     

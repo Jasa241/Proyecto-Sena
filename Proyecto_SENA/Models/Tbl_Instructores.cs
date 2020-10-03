@@ -11,7 +11,8 @@ namespace Proyecto_SENA.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Tbl_Instructores
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -20,8 +21,22 @@ namespace Proyecto_SENA.Models
             this.Tbl_Visitas = new HashSet<Tbl_Visitas>();
         }
     
+        [Required(ErrorMessage = "Campo obligatorio")]
+        [RegularExpression(@"\d{7,}$",
+            ErrorMessage = "Llene los campos de forma correcta <br/> " +
+            "Las cadenas deben contener minimo 3 caracteres y los numeros minimo 7")]
         public int Numero_Identificacion { get; set; }
+
+        [Required(ErrorMessage = "Campo obligatorio")]
+        [RegularExpression(@"^[a-zA-ZÀ-ÿ\u00f1\u00d1\s]{3,}$",
+            ErrorMessage = "Llene los campos de forma correcta <br/> " +
+            "Las cadenas deben contener minimo 3 caracteres y los numeros minimo 7")]
         public string Nombres { get; set; }
+
+        [Required(ErrorMessage = "Campo obligatorio")]
+        [RegularExpression(@"^[a-zA-ZÀ-ÿ\u00f1\u00d1\s]{3,}$",
+            ErrorMessage = "Llene los campos de forma correcta <br/> " +
+            "Las cadenas deben contener minimo 3 caracteres y los numeros minimo 7")]
         public string Apellidos { get; set; }
         public string Id_Usuario { get; set; }
     

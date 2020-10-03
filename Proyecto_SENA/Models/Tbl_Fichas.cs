@@ -11,7 +11,8 @@ namespace Proyecto_SENA.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Tbl_Fichas
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -22,6 +23,11 @@ namespace Proyecto_SENA.Models
         }
     
         public int Id_Ficha { get; set; }
+        [Required(ErrorMessage = "Campo obligatorio")]
+        [RegularExpression(@"\d{7,}$",
+            ErrorMessage = "Llene los campos de forma correcta <br/> " +
+            "Las cadenas deben contener minimo 3 caracteres y los numeros minimo 7")]
+
         public Nullable<int> Numero_Ficha { get; set; }
         public Nullable<int> Id_Programa { get; set; }
     

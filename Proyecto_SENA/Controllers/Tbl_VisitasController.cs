@@ -16,14 +16,20 @@ namespace Proyecto_SENA.Controllers
         private practicas3Entities db = new practicas3Entities();
 
         // GET: Tbl_Visitas
+        /// <summary>
+        /// Se valida mediante la variable de Session["Rol"] que el usuario tenga permiso
+        /// Despues validamos si el rol es 1 (administrador) para mostrar todas las visitas programadas
+        /// si el rol no es administrador se muestran las visitas programadas para el respectivo 
+        /// instructor,hacemos uso de la variable de Session["Id_Usuario"], para hacer el filtrado
+        /// de las fichas que debe visitar el intructor que le corresponde dicho nombre de usuario
+        /// </summary>
+        /// <returns>Se devuelve la vista mas el modelo correspondiente a la tabla</returns>
         public ActionResult Index()
         {
-
-            if (Session["Rol"].ToString() != "1" && Session["Rol"].ToString() != "2")
+            if (Session["Rol"].ToString() == "3")
             {
                 return RedirectToAction("Index", "Home");
             }
-
             if (Session["Rol"].ToString() == "1")
             {
                 var tbl_Visitas = db.Tbl_Visitas.Include(t => t.Tbl_Fichas).Include(t => t.Tbl_Instructores);
@@ -45,14 +51,18 @@ namespace Proyecto_SENA.Controllers
         }
 
         // GET: Tbl_Visitas/Details/5
+        /// <summary>
+        /// Se valida mediante la variable de Session["Rol"] que el usuario tenga permiso
+        /// se obtiene el numero de la ficha de la visita, y se guarda en la variable ficha
+        /// </summary>
+        /// <param name="id">Resive el id que contiene la informacion del registro a editar</param>
+        /// <returns>se redirecciona al index de aprendices con el numero de la ficha correspondiente</returns>
         public ActionResult Details(int? id)
         {
-
-            if (Session["Rol"].ToString() != "1" && Session["Rol"].ToString() != "2")
+            if (Session["Rol"].ToString() == "3")
             {
                 return RedirectToAction("Index", "Home");
             }
-
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -62,15 +72,18 @@ namespace Proyecto_SENA.Controllers
             {
                 return HttpNotFound();
             }
-
             int? ficha = tbl_Visitas.Numero_Ficha;
             return RedirectToAction("Index", "Tbl_Aprendices", new { ficha });
         }
 
         // GET: Tbl_Visitas/Create
+        /// <summary>
+        /// Se valida mediante la variable de Session["Rol"] que el usuario tenga permiso
+        /// Se crean los respectivos ViewBag que posteriormente seran DropDownList en la vista 
+        /// </summary>
+        /// <returns>Se devuelve la vista</returns>
         public ActionResult Create()
         {
-
             if (Session["Rol"].ToString() != "1")
             {
                 return RedirectToAction("Index", "Home");
@@ -100,6 +113,13 @@ namespace Proyecto_SENA.Controllers
         // POST: Tbl_Visitas/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
+        /// <summary>
+        /// se valida que el modelo sea valido y se crea el nuevo registro en la DB
+        /// Se crean los respectivos ViewBag que posteriormente seran DropDownList en la vista 
+        /// </summary>
+        /// <param name="tbl_Visitas">Recibe el modelo del tipo correspondiente a la tabla,
+        /// con la informacion suministrada</param>
+        /// <returns>Redireciona al index del controller</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id_Visita,Id_Instructor,Numero_Ficha")] Tbl_Visitas tbl_Visitas)
@@ -117,9 +137,14 @@ namespace Proyecto_SENA.Controllers
         }
 
         // GET: Tbl_Visitas/Edit/5
+        /// <summary>
+        /// Se valida mediante la variable de Session["Rol"] que el usuario tenga permiso
+        /// Se crean los respectivos ViewBag que posteriormente seran DropDownList en la vista
+        /// </summary>
+        /// <param name="id">Resive el id que contiene la informacion del registro a editar</param>
+        /// <returns>El modelo con la informacion correspondiente al id</returns>
         public ActionResult Edit(int? id)
         {
-
             if (Session["Rol"].ToString() != "1")
             {
                 return RedirectToAction("Index", "Home");
@@ -157,6 +182,13 @@ namespace Proyecto_SENA.Controllers
         // POST: Tbl_Visitas/Edit/5
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
+        /// <summary>
+        /// se valida que el modelo sea valido y se edita el registro en la DB
+        /// Se crean los respectivos ViewBag que posteriormente seran DropDownList en la vista
+        /// </summary>
+        /// <param name="tbl_Visitas">Recibe el modelo del tipo correspondiente a la tabla,
+        /// con la informacion suministrada</param>
+        /// <returns>Redireciona al index del controller</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id_Visita,Id_Instructor,Numero_Ficha")] Tbl_Visitas tbl_Visitas)
@@ -173,14 +205,17 @@ namespace Proyecto_SENA.Controllers
         }
 
         // GET: Tbl_Visitas/Delete/5
+        /// <summary>
+        /// Se valida mediante la variable de Session["Rol"] que el usuario tenga permiso
+        /// </summary>
+        /// <param name="id">Resive el id que contiene la informacion del registro a eliminar</param>
+        /// <returns>La vista con el modelo que contiene la informacion correspondiente al id</returns>
         public ActionResult Delete(int? id)
         {
-
             if (Session["Rol"].ToString() != "1")
             {
                 return RedirectToAction("Index", "Home");
             }
-
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -194,6 +229,11 @@ namespace Proyecto_SENA.Controllers
         }
 
         // POST: Tbl_Visitas/Delete/5
+        /// <summary>
+        /// Se muestar la vista con la informacion correspondiente al id
+        /// </summary>
+        /// <param name="id">Resive el id que contiene la informacion del registro a eliminar</param>
+        /// <returns>Se devuelve la vista mas el modelo con la informacion del registro a eliminar</returns>
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

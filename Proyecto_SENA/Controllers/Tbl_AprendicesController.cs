@@ -20,9 +20,14 @@ namespace Proyecto_SENA.Controllers
         private practicas3Entities db = new practicas3Entities();
 
         // GET: Tbl_Aprendices
+        /// <summary>
+        /// Se valida mediante la variable de Session["Rol"] que el usuario tenga permiso
+        /// se recibe la ficha para mostrar unicamente los aprendices pertenecientes a ella
+        /// </summary>
+        /// <returns>Se devuelve la vista mas el modelo correspondiente a la tabla</returns>
         public ActionResult Index(int? ficha)
         {
-            if (Session["Rol"].ToString() != "1" && Session["Rol"].ToString() != "2")
+            if (Session["Rol"].ToString() == "3")
             {
                 return RedirectToAction("Index", "Home");
             }
@@ -34,14 +39,18 @@ namespace Proyecto_SENA.Controllers
         }
 
         // GET: Tbl_Aprendices/Details/5
+        /// <summary>
+        /// Se valida mediante la variable de Session["Rol"] que el usuario tenga permiso
+        /// Se crea un ViewBag que posteriormente sera un DropDownList en la vista
+        /// </summary>
+        /// <param name="id">Resive el id que contiene la informacion del registro</param>
+        /// <returns>la vista con el modelo que contiene la informacion correspondiente al id</returns>
         public ActionResult Details(int? id, int etapa)
         {
-
-            if (Session["Rol"].ToString() != "1" && Session["Rol"].ToString() != "2")
+            if (Session["Rol"].ToString() == "3")
             {
                 return RedirectToAction("Index", "Home");
             }
-
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -57,6 +66,10 @@ namespace Proyecto_SENA.Controllers
         }
 
         // GET: Tbl_Aprendices/Create
+        /// <summary>
+        /// Se crea un ViewBag que posteriormente sera un DropDownList en la vista
+        /// </summary>
+        /// <returns>Se devuelve la vista</returns>
         public ActionResult Create()
         {
             ViewBag.Id_Ficha = new SelectList(db.Tbl_Fichas, "Id_Ficha", "Numero_Ficha");
@@ -66,35 +79,40 @@ namespace Proyecto_SENA.Controllers
         // POST: Tbl_Aprendices/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
+        /// <summary>
+        /// Se crea un ViewBag que posteriormente sera un DropDownList en la vista
+        /// se valida que el modelo sea valido y se crea el nuevo registro en la DB
+        /// </summary>
+        /// <param name="tbl_Aprendices">Recibe el modelo del tipo correspondiente a la tabla,
+        /// con la informacion suministrada</param>
+        /// <returns>Redireciona al create del controller empresas</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Numero_Identificacion,Nombres,Apellidos,Id_Ficha,Telefono,Correo,Id_Empresa")] Tbl_Aprendices tbl_Aprendices)
         {
             if (ModelState.IsValid && tbl_Aprendices.Nombres != null && tbl_Aprendices.Apellidos != null && tbl_Aprendices.Telefono != null && tbl_Aprendices.Correo != null)
             {
-                if (Metodos.Numeros(Convert.ToString(tbl_Aprendices.Numero_Identificacion)) && Metodos.Cadena(tbl_Aprendices.Nombres) && Metodos.Cadena(tbl_Aprendices.Apellidos) && Metodos.Numeros(tbl_Aprendices.Telefono))
-                {
-                    db.Tbl_Aprendices.Add(tbl_Aprendices);
-                    db.SaveChanges();
-                    return RedirectToAction("Create", "Tbl_Empresas");
-                }
-                else { ViewBag.Validar = "Llene los campos con el formato correcto"; }
+                db.Tbl_Aprendices.Add(tbl_Aprendices);
+                db.SaveChanges();
+                return RedirectToAction("Create", "Tbl_Empresas");
             }
-            else { ViewBag.Validar = "Llene todos los campos"; }
-
             ViewBag.Id_Ficha = new SelectList(db.Tbl_Fichas, "Id_Ficha", "Numero_Ficha", tbl_Aprendices.Id_Ficha);
             return View(tbl_Aprendices);
         }
 
         // GET: Tbl_Aprendices/Edit/5
+        /// <summary>
+        /// Se valida mediante la variable de Session["Rol"] que el usuario tenga permiso
+        /// Se crea un ViewBag que posteriormente sera un DropDownList en la vista
+        /// </summary>
+        /// <param name="id">Resive el id que contiene la informacion del registro a editar</param>
+        /// <returns>El modelo con la informacion correspondiente al id</returns>
         public ActionResult Edit(int? id)
         {
-
-            if (Session["Rol"].ToString() != "1" && Session["Rol"].ToString() != "2")
+            if (Session["Rol"].ToString() == "3")
             {
                 return RedirectToAction("Index", "Home");
             }
-
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -111,33 +129,39 @@ namespace Proyecto_SENA.Controllers
         // POST: Tbl_Aprendices/Edit/5
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
+        /// <summary>
+        /// se valida que el modelo sea valido y se edita el registro en la DB
+        /// Se crea un ViewBag que posteriormente sera un DropDownList en la vista
+        /// </summary>
+        /// <param name="tbl_Aprendices">Recibe el modelo del tipo correspondiente a la tabla,
+        /// con la informacion suministrada</param>
+        /// <returns>Redireciona al index del controller aprendices, con la ficha del aprendiz</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Numero_Identificacion,Nombres,Apellidos,Id_Ficha,Telefono,Correo,Id_Centro,Id_Empresa")] Tbl_Aprendices tbl_Aprendices)
         {
             if (ModelState.IsValid)
             {
-                if (Metodos.Cadena(tbl_Aprendices.Nombres) && Metodos.Cadena(tbl_Aprendices.Apellidos) && Metodos.Numeros(tbl_Aprendices.Telefono))
-                {
-                    db.Entry(tbl_Aprendices).State = EntityState.Modified;
-                    db.SaveChanges();
-                    return RedirectToAction("Index", new { ficha = tbl_Aprendices.Id_Ficha });
-                }
-                else { ViewBag.Validar = "Llene los campos con el formato correcto"; }
+                db.Entry(tbl_Aprendices).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index", new { ficha = tbl_Aprendices.Id_Ficha });
             }
             ViewBag.Id_Ficha = new SelectList(db.Tbl_Fichas, "Id_Ficha", "Numero_Ficha", tbl_Aprendices.Id_Ficha);
             return View(tbl_Aprendices);
         }
 
         // GET: Tbl_Aprendices/Delete/5
+        /// <summary>
+        /// Se valida mediante la variable de Session["Rol"] que el usuario tenga permiso
+        /// </summary>
+        /// <param name="id">Resive el id que contiene la informacion del registro a eliminar</param>
+        /// <returns>La vista con el modelo que contiene la informacion correspondiente al id</returns>        
         public ActionResult Delete(int? id)
         {
-
             if (Session["Rol"].ToString() != "1")
             {
                 return RedirectToAction("Index", "Home");
             }
-
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -151,6 +175,11 @@ namespace Proyecto_SENA.Controllers
         }
 
         // POST: Tbl_Aprendices/Delete/5
+        /// <summary>
+        /// Se muestar la vista con la informacion correspondiente al id
+        /// </summary>
+        /// <param name="id">Resive el id que contiene la informacion del registro a eliminar</param>
+        /// <returns>Se devuelve la vista mas el modelo con la informacion del registro a eliminar</returns>
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
@@ -160,36 +189,70 @@ namespace Proyecto_SENA.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+
+        /// <summary>
+        /// se consulta si el aprendiz ya tiene una empresa registrada, si es asi se redirecciona al
+        /// details del controller empresa, si es no redireccona al create del controller empresa,
+        /// ambas redireciones incluyen el id del aprendiz, en el caso de details se envia la etapa 
+        /// tambien
+        /// </summary>
+        /// <param name="id">Es el id del aprendiz al cual se va asignar una empresa</param>
+        /// <param name="etapa">es la etapa en la que nos encontramos (Parcial,Final)</param>
+        /// <returns></returns>
         public ActionResult empresa(int? id, int? etapa)
         {
+            int Id_Empresa;
             try
             {
-                var idA = (from e in db.Tbl_Empresas
+                var Id_empresa = (from e in db.Tbl_Empresas
                            where e.Id_Aprendiz == id
                            select e).First();
+                Id_Empresa = Id_empresa.Id_Empresa;
             }
             catch
             {
-                return RedirectToAction("Create", "Tbl_Empresas");
+                return RedirectToAction("Create", "Tbl_Empresas", new { Id_Aprendiz = id });
             }
 
             return RedirectToAction("Details", "Tbl_Empresas", new { id, etapa });
         }
+
+        /// <summary>
+        /// se consulta si el aprendiz ya tiene una planeacion registrada, si es asi se redirecciona
+        /// al details del controller planeacion, si es no redireccona al create del controller 
+        /// planeacion, ambas redireciones incluyen el id del aprendiz, en el caso de details 
+        /// se envia la etapa tambien
+        /// </summary>
+        /// <param name="id">Es el id del aprendiz al cual se va asignar una empresa</param>
+        /// <param name="etapa">es la etapa en la que nos encontramos (Parcial,Final)</param>
+        /// <returns></returns>
         public ActionResult planeacion(int? id, int? etapa)
         {
+            int Id_Planeacion;
             try
             {
-                var idA = (from p in db.Tbl_Planeacion_Etapa_Productiva
+                var Id_planeacion = (from p in db.Tbl_Planeacion_Etapa_Productiva
                            where p.Id_Aprendiz == id
                            select p).First();
+                Id_Planeacion = Id_planeacion.Id_Planeacion;
             }
             catch
             {
-                return RedirectToAction("Create", "Tbl_Planeacion_Etapa_Productiva");
+                return RedirectToAction("Create", "Tbl_Planeacion_Etapa_Productiva", new { id });
             }
 
-            return RedirectToAction("Details", "Tbl_Planeacion_Etapa_Productiva", new { id, etapa });
+            return RedirectToAction("Details", "Tbl_Planeacion_Etapa_Productiva", new { id = Id_Planeacion, etapa });
         }
+
+        /// <summary>
+        /// se consulta si el aprendiz ya tiene un factor actitud registrado, si es asi se
+        /// redirecciona al details del controller factores_actitud, si es no redireccona
+        /// al create del controller factores_actitud, ambas redireciones incluyen el id 
+        /// del aprendiz, en el caso de details se envia la etapa tambien
+        /// </summary>
+        /// <param name="id">Es el id del aprendiz al cual se va asignar una empresa</param>
+        /// <param name="etapa">es la etapa en la que nos encontramos (Parcial,Final)</param>
+        /// <returns></returns>
         public ActionResult Factores_Actitud(int? id, int? etapa)
         {
             int Id_Actitud;
@@ -208,6 +271,15 @@ namespace Proyecto_SENA.Controllers
 
             return RedirectToAction("Details", "Tbl_Actitud_Comportamiento", new { id = Id_Actitud, etapa });
         }
+        /// <summary>
+        /// se consulta si el aprendiz ya tiene un factor tecnico registrado, si es asi se
+        /// redirecciona al details del controller factores_tecnico, si es no redireccona
+        /// al create del controller factores_tecnico, ambas redireciones incluyen el id 
+        /// del aprendiz, en el caso de details se envia la etapa tambien
+        /// </summary>
+        /// <param name="id">Es el id del aprendiz al cual se va asignar una empresa</param>
+        /// <param name="etapa">es la etapa en la que nos encontramos (Parcial,Final)</param>
+        /// <returns></returns>
         public ActionResult Factores_Tecnicos(int? id, int? etapa)
         {
             int Id_Tecnicos;
@@ -226,6 +298,16 @@ namespace Proyecto_SENA.Controllers
 
             return RedirectToAction("Details", "Tbl_Factores_Tecnicos", new { id = Id_Tecnicos, etapa });
         }
+
+        /// <summary>
+        /// se consulta si el aprendiz ya tiene una evaluacion registrado, si es asi se
+        /// redirecciona al details del controller evaluacion, si es no redireccona
+        /// al create del controller evaluacion, ambas redireciones incluyen el id 
+        /// del aprendiz, en el caso de details se envia la etapa tambien
+        /// </summary>
+        /// <param name="id">Es el id del aprendiz al cual se va asignar una empresa</param>
+        /// <param name="etapa">es la etapa en la que nos encontramos (Parcial,Final)</param>
+        /// <returns></returns>
         public ActionResult Evaluacion(int? id, int? etapa)
         {
             int Id_Evaluacion;
