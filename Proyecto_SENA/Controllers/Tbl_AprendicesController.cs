@@ -35,6 +35,7 @@ namespace Proyecto_SENA.Controllers
             var Aprendices = (from Aprendiz in db.Tbl_Aprendices
                               where ficha == Aprendiz.Id_Ficha
                               select Aprendiz).ToList();
+
             return View(Aprendices);
         }
 
@@ -94,7 +95,7 @@ namespace Proyecto_SENA.Controllers
             {
                 db.Tbl_Aprendices.Add(tbl_Aprendices);
                 db.SaveChanges();
-                return RedirectToAction("Create", "Tbl_Empresas");
+                return RedirectToAction("Create", "Tbl_Empresas", new { Id_Aprendiz = tbl_Aprendices.Numero_Identificacion});
             }
             ViewBag.Id_Ficha = new SelectList(db.Tbl_Fichas, "Id_Ficha", "Numero_Ficha", tbl_Aprendices.Id_Ficha);
             return View(tbl_Aprendices);

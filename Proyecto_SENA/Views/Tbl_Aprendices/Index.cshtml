@@ -1,4 +1,8 @@
-﻿@model IEnumerable<Proyecto_SENA.Models.Tbl_Aprendices>
+﻿@using System.Data;
+@using System.Data.Entity;
+@using System.Linq;
+@using Proyecto_SENA.Models;
+@model IEnumerable<Proyecto_SENA.Models.Tbl_Aprendices>
 
 @{
     ViewBag.Title = "Aprendices";
@@ -28,9 +32,11 @@
             @Html.DisplayNameFor(model => model.Correo)
         </th>
         <th>
-            <label>Ficha</label>
+            @Html.Label("Ficha")
         </th>
-        <th></th>
+        <th>
+            @Html.Label("Visitas")
+        </th>
     </tr>
 
     @foreach (var item in Model)
@@ -55,19 +61,47 @@
                 @Html.DisplayFor(modelItem => item.Tbl_Fichas.Numero_Ficha)
             </td>
             <td>
+                @{
+                    practicas3Entities db = new practicas3Entities();
+
+                    int visits = 0;
+                    try{
+                        var visit1 = (from v1 in db.Tbl_Planeacion_Etapa_Productiva
+                                      where v1.Id_Aprendiz == item.Numero_Identificacion
+                                      select v1).First();
+
+                        if (visit1 != null) { visits = 1; }
+                    }catch { }
+
+                    try{
+                        var visit2 = (from v1 in db.Tbl_Actitud_Comportamiento
+                                      where v1.Id_Aprendiz == item.Numero_Identificacion
+                                      select v1).First();
+
+                        if (visit2 != null) { visits = 2; }
+                    }catch { }
+
+                    try{
+                        var visit3 = (from v1 in db.Tbl_Factores_Tecnicos
+                                      where v1.Id_Aprendiz == item.Numero_Identificacion
+                                      select v1).First();
+
+                        if (visit3 != null) { visits = 3; }
+                    }catch { }
+
+                @Html.CheckBox("Visit", visits == 1 ? true : false, new { disabled = "disabled" }) @Html.CheckBox("Visit", visits == 2 ? true : false, new { disabled = "disabled" }) @Html.CheckBox("Visit", visits == 3 ? true : false, new { disabled = "disabled" })
+                }
+            </td>
+            <td>
                 @Html.ActionLink("Editar", "Edit", new { id = item.Numero_Identificacion }, new { @class = "btn btn-primary" })
                 @Html.ActionLink("Parcial", "Details", new { id = item.Numero_Identificacion, etapa = 1 }, new { @class = "btn btn-info" })
                 @Html.ActionLink("Final", "Details", new { id = item.Numero_Identificacion, etapa = 2 }, new { @class = "btn btn-info" })
                 @{
-                    try
+                    if (Session["Rol"].ToString() == "1")
                     {
-                        if (Session["Rol"].ToString() == "1")
-                        {
-                            @Html.ActionLink("Eliminar", "Delete", new { id = item.Numero_Identificacion }, new { @class = "btn btn-danger" })
+                        @Html.ActionLink("Eliminar", "Delete", new { id = item.Numero_Identificacion }, new { @class = "btn btn-danger" })
 
-                        }
                     }
-                    catch { }
                 }
             </td>
         </tr>
