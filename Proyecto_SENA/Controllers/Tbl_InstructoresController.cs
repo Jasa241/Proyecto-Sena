@@ -6,6 +6,7 @@ using System.Data.Entity;
 using System.Data.Entity.Core.EntityClient;
 using System.Linq;
 using System.Net;
+using System.Security.Cryptography;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.UI.WebControls;
@@ -47,7 +48,7 @@ namespace Proyecto_SENA.Controllers
                 return RedirectToAction("Index", "Home");
             }
 
-            ViewBag.Id_Usuario = List_Instructores();
+            ViewBag.Id_Usuario = List_Instructores(null);
             return View();
         }
 
@@ -71,7 +72,7 @@ namespace Proyecto_SENA.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.Id_Usuario = List_Instructores();
+            ViewBag.Id_Usuario = List_Instructores(null);
             return View(tbl_Instructores);
         }
 
@@ -97,7 +98,7 @@ namespace Proyecto_SENA.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.Id_Usuario = List_Instructores();
+            ViewBag.Id_Usuario = List_Instructores(tbl_Instructores.Id_Usuario);
             return View(tbl_Instructores);
         }
 
@@ -121,7 +122,8 @@ namespace Proyecto_SENA.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.Id_Usuario = List_Instructores();
+            ViewBag.Id_Usuario = List_Instructores(tbl_Instructores.Id_Usuario);
+
             return View(tbl_Instructores);
         }
 
@@ -180,14 +182,24 @@ namespace Proyecto_SENA.Controllers
         /// para mostrar solo los usuarios que pertenecen a los intructores
         /// </summary>
         /// <returns>se regresa la lista con los usuarios ya filtrados</returns>
-        static List<SelectListItem> List_Instructores()
+        static List<SelectListItem> List_Instructores(string usuario_instructor)
         {
             practicas3Entities db = new practicas3Entities();
 
             //Necesio retornar los nombres de usuario que tienen el rol instructor
             var lst = (from l in db.Tbl_Usuarios
-                       where l.Id_Rol == 2
-                       select new { id = l.NombreUsuario, Nombre_Usuario = l.NombreUsuario }).ToList();
+                       where l.Id_Rol == 2 
+                       select new { Nombre_Usuario = l.NombreUsuario }).ToList();
+
+            if (usuario_instructor != null)
+            {
+                var usuario = (from u in lst
+                               where u.Nombre_Usuario == usuario_instructor
+                               select new { Nombre_Usuario = u.Nombre_Usuario }).First();
+
+                lst.Remove(usuario);
+                lst.Insert(0, usuario);
+            }
 
             //Convierto la consulta a SelectListItem que es el tipo con el que trabaja el DropDownList
             List<SelectListItem> Id_Usuario = lst.ConvertAll(l =>
@@ -195,7 +207,7 @@ namespace Proyecto_SENA.Controllers
                 return new SelectListItem()
                 {
                     Text = l.Nombre_Usuario,
-                    Value = l.id.ToString()
+                    Value = l.Nombre_Usuario
                 };
             });
 

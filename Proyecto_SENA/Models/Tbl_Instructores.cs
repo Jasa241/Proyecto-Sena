@@ -38,6 +38,11 @@ namespace Proyecto_SENA.Models
             ErrorMessage = "Llene los campos de forma correcta <br/> " +
             "Las cadenas deben contener minimo 3 caracteres y los numeros minimo 7")]
         public string Apellidos { get; set; }
+
+        [Required(ErrorMessage = "Campo obligatorio")]
+        [RegularExpression(@"^[a-zA-ZÀ-ÿ0-9\u00f1\u00d1\s]{3,}$",
+            ErrorMessage = "Llene los campos de forma correcta <br/> " +
+            "Las cadenas deben contener minimo 3 caracteres y los numeros minimo 7")]
         public string Id_Usuario { get; set; }
     
         public virtual Tbl_Usuarios Tbl_Usuarios { get; set; }
