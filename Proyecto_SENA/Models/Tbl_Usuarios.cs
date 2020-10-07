@@ -19,18 +19,13 @@ namespace Proyecto_SENA.Models
         public Tbl_Usuarios()
         {
             this.Tbl_Instructores = new HashSet<Tbl_Instructores>();
-        }        
+        }
 
         [Required(ErrorMessage = "Campo obligatorio")]
-        [RegularExpression(@"^[a-zA-ZÀ-ÿ0-9\u00f1\u00d1\s]{3,}$",
+        [RegularExpression(@"^[a-zA-Z0-9\s]{3,}$",
             ErrorMessage = "Llene los campos de forma correcta <br/> " +
             "Las cadenas deben contener minimo 3 caracteres y los numeros minimo 7")]
         public string NombreUsuario { get; set; }
-
-        [Required(ErrorMessage = "Campo obligatorio")]
-        [RegularExpression(@"^[a-zA-ZÀ-ÿ0-9\u00f1\u00d1\s]{3,}$",
-            ErrorMessage = "Llene los campos de forma correcta <br/> " +
-            "Las cadenas deben contener minimo 3 caracteres y los numeros minimo 7")]
         public string Contrasena { get; set; }
         public Nullable<int> Id_Rol { get; set; }
     

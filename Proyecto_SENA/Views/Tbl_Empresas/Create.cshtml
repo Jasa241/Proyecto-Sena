@@ -12,13 +12,6 @@
 
 <div class="form-horizontal">
     <h4>Empresa</h4>
-    @{
-        string Validar = ViewBag.Validar;
-        if (Validar != null)
-        {
-            <div class="alert alert-danger">@ViewBag.Validar </div>
-        }
-    }
     @Html.HiddenFor(model => model.Id_Aprendiz)
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })

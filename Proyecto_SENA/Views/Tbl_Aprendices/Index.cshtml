@@ -89,7 +89,7 @@
                         if (visit3 != null) { visits = 3; }
                     }catch { }
 
-                @Html.CheckBox("Visit", visits == 1 ? true : false, new { disabled = "disabled" }) @Html.CheckBox("Visit", visits == 2 ? true : false, new { disabled = "disabled" }) @Html.CheckBox("Visit", visits == 3 ? true : false, new { disabled = "disabled" })
+                @Html.CheckBox("Visit", visits > 0 ? true : false, new { disabled = "disabled" }) @Html.CheckBox("Visit", visits > 1 ? true : false, new { disabled = "disabled" }) @Html.CheckBox("Visit", visits > 2 ? true : false, new { disabled = "disabled" })
                 }
             </td>
             <td>

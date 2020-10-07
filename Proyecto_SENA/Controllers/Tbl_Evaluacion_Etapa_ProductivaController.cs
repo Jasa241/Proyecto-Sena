@@ -127,12 +127,12 @@ namespace Proyecto_SENA.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id_Evaluacion,Juicio_Evaluacion,Reconocimientos,Id_Aprendiz")] Tbl_Evaluacion_Etapa_Productiva tbl_Evaluacion_Etapa_Productiva)
         {
-            int? etapa = ViewBag.etapa;
             if (ModelState.IsValid)
             {
+                var ficha = (from f in db.Tbl_Aprendices where f.Numero_Identificacion == tbl_Evaluacion_Etapa_Productiva.Id_Aprendiz select f.Id_Ficha).First();
                 db.Entry(tbl_Evaluacion_Etapa_Productiva).State = EntityState.Modified;
                 db.SaveChanges();
-                return Back(tbl_Evaluacion_Etapa_Productiva.Id_Aprendiz, etapa);
+                return RedirectToAction("Index", "Tbl_Aprendices", new { ficha });
             }
             return View(tbl_Evaluacion_Etapa_Productiva);
         }

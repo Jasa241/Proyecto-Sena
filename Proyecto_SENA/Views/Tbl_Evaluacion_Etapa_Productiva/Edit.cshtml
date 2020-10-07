@@ -19,13 +19,16 @@
         @Html.HiddenFor(model => model.Id_Evaluacion)
         @Html.HiddenFor(model => model.Id_Aprendiz)
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Juicio_Evaluacion, "Juicio de evaluacion", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Juicio_Evaluacion, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Juicio_Evaluacion, "", new { @class = "text-danger" })
-            </div>
+    <div class="form-group">
+        <label>Juicio de evaluacion</label><br />
+        <div class="form-check">
+            @Html.RadioButtonFor(model => model.Juicio_Evaluacion, "Aprobado", new { @name = "Juicio_Evaluacion" })
+            <label class="form-check-label">Aprobado</label>
+            @Html.RadioButtonFor(model => model.Juicio_Evaluacion, "No aprobado", new { @name = "Juicio_Evaluacion" })
+            <label class="form-check-label">No aprobado</label>
         </div>
+        @Html.ValidationMessageFor(model => model.Juicio_Evaluacion, "", new { @class = "text-danger" })
+    </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.Reconocimientos, htmlAttributes: new { @class = "control-label col-md-2" })

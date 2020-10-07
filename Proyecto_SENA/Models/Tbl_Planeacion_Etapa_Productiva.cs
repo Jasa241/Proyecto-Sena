@@ -12,6 +12,7 @@ namespace Proyecto_SENA.Models
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using System.Web;
 
     public partial class Tbl_Planeacion_Etapa_Productiva
     {
@@ -30,6 +31,7 @@ namespace Proyecto_SENA.Models
         public string Evidencias_Aprendizaje { get; set; }
 
         [Required(ErrorMessage = "Campo obligatorio")]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> Fecha { get; set; }
 
         [Required(ErrorMessage = "Campo obligatorio")]

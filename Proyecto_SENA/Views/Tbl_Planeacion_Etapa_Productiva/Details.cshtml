@@ -11,10 +11,7 @@
 <div>
     <label>Actividades a desarrollar: </label> @Html.DisplayFor(model => model.Actividades_A_Desarrollar)<br />
     <label>Evidencia de aprendizaje: </label> @Html.DisplayFor(model => model.Evidencias_Aprendizaje)<br />
-    <label>Fecha: </label>@{ var date = new DateTime();
-        date = Convert.ToDateTime(Model.Fecha);
-        @date.ToShortDateString()
-    }<br />
+    <label>Fecha: </label> @Html.DisplayFor(model => model.Fecha) <br/>
     <label>Lugar: </label> @Html.DisplayFor(model => model.Lugar)<br />
     <label>Observaciones: </label> @Html.DisplayFor(model => model.Observaciones)<br />
 </div>

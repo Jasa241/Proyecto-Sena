@@ -17,15 +17,16 @@
         @Html.HiddenFor(model => model.Id_Aprendiz)
 
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            <label>Juicio de evaluacion</label><br />
-            <div class="form-check">
-                @Html.RadioButtonFor(model => model.Juicio_Evaluacion, "Aprobado", new { @name = "Juicio_Evaluacion" })
-                <label class="form-check-label">Aprobado</label>
-                @Html.RadioButtonFor(model => model.Juicio_Evaluacion, "No aprobado", new { @name = "Juicio_Evaluacion" })
+    <div class="form-group">
+        <label>Juicio de evaluacion</label><br />
+        <div class="form-check">
+            @Html.RadioButtonFor(model => model.Juicio_Evaluacion, "Aprobado", new { @name = "Juicio_Evaluacion" })
+            <label class="form-check-label">Aprobado</label>
+            @Html.RadioButtonFor(model => model.Juicio_Evaluacion, "No aprobado", new { @name = "Juicio_Evaluacion" })
             <label class="form-check-label">No aprobado</label>
-            </div>
         </div>
+        @Html.ValidationMessageFor(model => model.Juicio_Evaluacion, "", new { @class = "text-danger" })
+    </div>
 
         <div class="form-group">
             <label>Reconocimientos especiales sobre el desempeño</label><br />

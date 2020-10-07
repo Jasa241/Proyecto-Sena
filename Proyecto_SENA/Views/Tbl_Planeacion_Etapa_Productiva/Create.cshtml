@@ -17,14 +17,6 @@
             @Html.HiddenFor(model => model.Id_Aprendiz)
             <h4>Planeacion Etapa Productiva</h4>
             <hr />
-            @{
-                string Validar = ViewBag.Validar;
-                if (Validar != null)
-                {
-                    <div class="alert alert-danger">@ViewBag.Validar </div>
-                }
-            }
-
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             <label>Actividades a desarrollar</label><br />
             <p>

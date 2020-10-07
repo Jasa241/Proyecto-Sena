@@ -20,20 +20,22 @@
         @Html.HiddenFor(model => model.Tipo_Informe)
         @Html.HiddenFor(model => model.Id_Aprendiz)
 
-        <div class="form-group">
-            <label>Relaciones Interpersonales</label><br />
-            <p>
-                Desarrolla relaciones interpersonales con las personas de los diferentes niveles del ente conformador en
-                forma armoniosa, repetuosa y enmarcada dentro de los principios de convivencia social.
-            </p>
-            <textarea class="form-control" rows="6" name="Relaciones_Interpersonales">@Html.DisplayFor(model => model.Relaciones_Interpersonales)</textarea>
-            <div class="form-check">
-                @Html.RadioButtonFor(model => model.Valoracion_Relaciones, "Satisfactorio", new { @name = "Valoracion_Relaciones" })
-                <label class="form-check-label">Satisfactorio</label>
-                @Html.RadioButtonFor(model => model.Valoracion_Relaciones, "Por Mejorar", new { @name = "Valoracion_Relaciones" })
-                <label class="form-check-label">Por Mejorar</label>
-            </div>
+    <div class="form-group">
+        <label>Relaciones Interpersonales</label><br />
+        <p>
+            Desarrolla relaciones interpersonales con las personas de los diferentes niveles del ente conformador en
+            forma armoniosa, repetuosa y enmarcada dentro de los principios de convivencia social.
+        </p>
+        <textarea class="form-control" rows="6" name="Relaciones_Interpersonales">@Html.DisplayFor(model => model.Relaciones_Interpersonales)</textarea>
+        @Html.ValidationMessageFor(model => model.Relaciones_Interpersonales, "", new { @class = "text-danger" })
+        <div class="form-check">
+            @Html.RadioButtonFor(model => model.Valoracion_Relaciones, "Satisfactorio", new { @name = "Valoracion_Relaciones" })
+            <label class="form-check-label">Satisfactorio</label>
+            @Html.RadioButtonFor(model => model.Valoracion_Relaciones, "Por Mejorar", new { @name = "Valoracion_Relaciones" })
+            <label class="form-check-label">Por Mejorar</label>
         </div>
+        @Html.ValidationMessageFor(model => model.Valoracion_Relaciones, "", new { @class = "text-danger" })
+    </div>
         <br />
 
         <div class="form-group">
@@ -42,13 +44,14 @@
                 Participa en forma activa y propositiva en equipos de trabajo asumiendo los roles, de acuerdo con sus fortalezas.
             </p>
             <textarea class="form-control" rows="6" name="TrabajoEnEquipo">@Html.DisplayFor(model => model.TrabajoEnEquipo )</textarea>
-
+            @Html.ValidationMessageFor(model => model.TrabajoEnEquipo, "", new { @class = "text-danger" })
             <div class="form-check">
                 @Html.RadioButtonFor(model => model.Valoracion_Trabajo, "Satisfactorio", new { @name = "Valoracion_Trabajo" })
                 <label class="form-check-label">Satisfactorio</label>
                 @Html.RadioButtonFor(model => model.Valoracion_Trabajo, "Por Mejorar", new { @name = "Valoracion_Trabajo" })
                 <label class="form-check-label">Por Mejorar</label>
             </div>
+            @Html.ValidationMessageFor(model => model.Valoracion_Trabajo, "", new { @class = "text-danger" })
         </div>
         <br />
 
@@ -58,12 +61,14 @@
                 Propone alternativas de solucion a situaciones problematicas, en el contexto del desarrollo de su etapa prodructiva.
             </p>
             <textarea class="form-control" rows="6" name="Solucion_De_Problemas">@Html.DisplayFor(model => model.Solucion_De_Problemas)</textarea>
+            @Html.ValidationMessageFor(model => model.Solucion_De_Problemas, "", new { @class = "text-danger" })
             <div class="form-check">
                 @Html.RadioButtonFor(model => model.Valoracion_Solucion, "Satisfactorio", new { @name = "Valoracion_Solucion" })
                 <label class="form-check-label">Satisfactorio</label>
                 @Html.RadioButtonFor(model => model.Valoracion_Solucion, "Por Mejorar", new { @name = "Valoracion_Solucion" })
                 <label class="form-check-label">Por Mejorar</label>
             </div>
+            @Html.ValidationMessageFor(model => model.Valoracion_Solucion, "", new { @class = "text-danger" })
         </div>
         <br />
 
@@ -73,12 +78,14 @@
                 Asume compromiso de las funciones y responsabilidades asignadas en el desarrollo de su etapa productiva.
             </p>
             <textarea class="form-control" rows="6" name="Cumplimiento">@Html.DisplayFor(model => model.Cumplimiento)</textarea>
+            @Html.ValidationMessageFor(model => model.Cumplimiento, "", new { @class = "text-danger" })
             <div class="form-check">
                 @Html.RadioButtonFor(model => model.Valoracion_Cumplimiento, "Satisfactorio", new { @name = "Valoracion_Cumplimiento" })
                 <label class="form-check-label">Satisfactorio</label>
                 @Html.RadioButtonFor(model => model.Valoracion_Cumplimiento, "Por Mejorar", new { @name = "Valoracion_Cumplimiento" })
                 <label class="form-check-label">Por Mejorar</label>
             </div>
+            @Html.ValidationMessageFor(model => model.Valoracion_Cumplimiento, "", new { @class = "text-danger" })
         </div>
         <br />
 
@@ -88,12 +95,14 @@
                 Demuestra capacidad para ordenar y disponer los elementos necesarios e informacion para facilitar le ejecucion de un trabajo y el logro de los objetivos.
             </p>
             <textarea class="form-control" rows="6" name="Organizacion">@Html.DisplayFor(model => model.Organizacion)</textarea>
+            @Html.ValidationMessageFor(model => model.Organizacion, "", new { @class = "text-danger" })
             <div class="form-check">
                 @Html.RadioButtonFor(model => model.Valoracion_Organizacion, "Satisfactorio", new { @name = "Valoracion_Organizacion" })
                 <label class="form-check-label">Satisfactorio</label>
                 @Html.RadioButtonFor(model => model.Valoracion_Organizacion, "Por Mejorar", new { @name = "Valoracion_Organizacion" })
                 <label class="form-check-label">Por Mejorar</label>
             </div>
+            @Html.ValidationMessageFor(model => model.Valoracion_Organizacion, "", new { @class = "text-danger" })
         </div>
         <br />
 

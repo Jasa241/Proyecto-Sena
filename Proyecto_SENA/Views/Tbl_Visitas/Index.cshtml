@@ -8,14 +8,14 @@
 <h2>Visitas</h2>
 
 <p>
-    @Html.ActionLink("Agregar visita", "Create", null, new { @class = "btn btn-success"})
+    @Html.ActionLink("Agregar visita", "Create", null, new { @class = "btn btn-success" })
 </p>
 <table class="table">
     <tr>
         <th>
             <label>Ficha</label>
         </th>
-        <th>    
+        <th>
             <label>Programa</label>
         </th>
         <th>
@@ -23,23 +23,34 @@
         </th>
     </tr>
 
-@foreach (var item in Model) {
-<tr>
-    <td>
-        @Html.DisplayFor(modelItem => item.Tbl_Fichas.Numero_Ficha)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Tbl_Fichas.Tbl_Programas.Nombre)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Tbl_Instructores.Nombres) @Html.DisplayFor(modelItem => item.Tbl_Instructores.Apellidos)
-    </td>
-    <td>
-        @Html.ActionLink("Editar", "Edit", new { id = item.Id_Visita }, new { @class = "btn btn-primary" })
-        @Html.ActionLink("Detalles", "Details", new { id = item.Id_Visita }, new { @class = "btn btn-info" })
-        @Html.ActionLink("Eliminar", "Delete", new { id = item.Id_Visita }, new { @class = "btn btn-danger" })
-    </td>
-</tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tbl_Fichas.Numero_Ficha)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tbl_Fichas.Tbl_Programas.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tbl_Instructores.Nombres) @Html.DisplayFor(modelItem => item.Tbl_Instructores.Apellidos)
+            </td>
+            <td>
+                @{
+                    if (Session["Rol"].ToString() == "1")
+                    {
+                        @Html.ActionLink("Editar", "Edit", new { id = item.Id_Visita }, new { @class = "btn btn-primary" })
+                    }
+
+                    @Html.ActionLink("Detalles", "Details", new { id = item.Id_Visita }, new { @class = "btn btn-info" })
+
+                    if (Session["Rol"].ToString() == "1")
+                    {
+                        @Html.ActionLink("Eliminar", "Delete", new { id = item.Id_Visita }, new { @class = "btn btn-danger" })
+                    }
+                }
+            </td>
+        </tr>
+    }
 
 </table>

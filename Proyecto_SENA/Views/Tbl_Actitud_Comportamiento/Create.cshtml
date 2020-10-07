@@ -12,19 +12,12 @@
 {
     @Html.AntiForgeryToken()
 
-<div class="form-horizontal">
-    <h4>Factores Actitudinales y Comportamentales</h4>
-    <hr />
-    @Html.HiddenFor(Model => Model.Tipo_Informe)
-    @Html.HiddenFor(Model => Model.Id_Aprendiz)
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    @{
-        string Validar = ViewBag.Validar;
-        if (Validar != null)
-        {
-            <div class="alert alert-danger">@ViewBag.Validar </div>
-        }
-    }
+    <div class="form-horizontal">
+        <h4>Factores Actitudinales y Comportamentales</h4>
+        <hr />
+        @Html.HiddenFor(Model => Model.Tipo_Informe)
+        @Html.HiddenFor(Model => Model.Id_Aprendiz)
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     <div class="form-group">
         <label>Relaciones Interpersonales</label><br />
         <p>
@@ -32,81 +25,91 @@
             forma armoniosa, repetuosa y enmarcada dentro de los principios de convivencia social.
         </p>
         <textarea class="form-control" rows="6" name="Relaciones_Interpersonales"></textarea>
+        @Html.ValidationMessageFor(model => model.Relaciones_Interpersonales, "", new { @class = "text-danger" })
         <div class="form-check">
             <input class="form-check-input" type="radio" name="Valoracion_Relaciones" value="Satisfactorio">
             <label class="form-check-label">Satisfactorio</label>
             <input class="form-check-input" type="radio" name="Valoracion_Relaciones" value="Por Mejorar">
             <label class="form-check-label">Por Mejorar</label>
         </div>
+        @Html.ValidationMessageFor(model => model.Valoracion_Relaciones, "", new { @class = "text-danger" })
     </div>
-    <br />
+        <br />
 
-    <div class="form-group">
-        <label>Trabajo en equipo</label><br />
-        <p>
-            Participa en forma activa y propositiva en equipos de trabajo asumiendo los roles, de acuerdo con sus fortalezas.
-        </p>
-        <textarea class="form-control" rows="6" name="TrabajoEnEquipo"></textarea>
-        <div class="form-check">
-            <input class="form-check-input" type="radio" name="Valoracion_Trabajo" value="Satisfactorio">
-            <label class="form-check-label">Satisfactorio</label>
-            <input class="form-check-input" type="radio" name="Valoracion_Trabajo" value="Por Mejorar">
-            <label class="form-check-label">Por Mejorar</label>
+        <div class="form-group">
+            <label>Trabajo en equipo</label><br />
+            <p>
+                Participa en forma activa y propositiva en equipos de trabajo asumiendo los roles, de acuerdo con sus fortalezas.
+            </p>
+            <textarea class="form-control" rows="6" name="TrabajoEnEquipo"></textarea>
+            @Html.ValidationMessageFor(model => model.TrabajoEnEquipo, "", new { @class = "text-danger" })
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="Valoracion_Trabajo" value="Satisfactorio">
+                <label class="form-check-label">Satisfactorio</label>
+                <input class="form-check-input" type="radio" name="Valoracion_Trabajo" value="Por Mejorar">
+                <label class="form-check-label">Por Mejorar</label>
+            </div>
+            @Html.ValidationMessageFor(model => model.Valoracion_Trabajo, "", new { @class = "text-danger" })
+        </div>
+        <br />
+
+        <div class="form-group">
+            <label>Solucion de problemas</label><br />
+            <p>
+                Propone alternativas de solucion a situaciones problematicas, en el contexto del desarrollo de su etapa prodructiva.
+            </p>
+            <textarea class="form-control" rows="6" name="Solucion_De_Problemas"></textarea>
+            @Html.ValidationMessageFor(model => model.Solucion_De_Problemas, "", new { @class = "text-danger" })
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="Valoracion_Solucion" value="Satisfactorio">
+                <label class="form-check-label">Satisfactorio</label>
+                <input class="form-check-input" type="radio" name="Valoracion_Solucion" value="Por Mejorar">
+                <label class="form-check-label">Por Mejorar</label>
+            </div>
+            @Html.ValidationMessageFor(model => model.Valoracion_Solucion, "", new { @class = "text-danger" })
+        </div>
+        <br />
+
+        <div class="form-group">
+            <label>Cumplimiento</label><br />
+            <p>
+                Asume compromiso de las funciones y responsabilidades asignadas en el desarrollo de su etapa productiva.
+            </p>
+            <textarea class="form-control" rows="6" name="Cumplimiento"></textarea>
+            @Html.ValidationMessageFor(model => model.Cumplimiento, "", new { @class = "text-danger" })
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="Valoracion_Cumplimiento" value="Satisfactorio">
+                <label class="form-check-label">Satisfactorio</label>
+                <input class="form-check-input" type="radio" name="Valoracion_Cumplimiento" value="Por Mejorar">
+                <label class="form-check-label">Por Mejorar</label>
+            </div>
+            @Html.ValidationMessageFor(model => model.Valoracion_Cumplimiento, "", new { @class = "text-danger" })
+        </div>
+        <br />
+
+        <div class="form-group">
+            <label>Organizacion</label><br />
+            <p>
+                Demuestra capacidad para ordenar y disponer los elementos necesarios e informacion para facilitar le ejecucion de un trabajo y el logro de los objetivos.
+            </p>
+            <textarea class="form-control" rows="6" name="Organizacion"></textarea>
+            @Html.ValidationMessageFor(model => model.Organizacion, "", new { @class = "text-danger" })
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="Valoracion_Organizacion" value="Satisfactorio">
+                <label class="form-check-label">Satisfactorio</label>
+                <input class="form-check-input" type="radio" name="Valoracion_Organizacion" value="Por Mejorar">
+                <label class="form-check-label">Por Mejorar</label>
+            </div>
+            @Html.ValidationMessageFor(model => model.Valoracion_Organizacion, "", new { @class = "text-danger" })
+        </div>
+        <br />
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Agregar" class="btn btn-success" />
+            </div>
         </div>
     </div>
-    <br />
-
-    <div class="form-group">
-        <label>Solucion de problemas</label><br />
-        <p>
-            Propone alternativas de solucion a situaciones problematicas, en el contexto del desarrollo de su etapa prodructiva.
-        </p>
-        <textarea class="form-control" rows="6" name="Solucion_De_Problemas"></textarea>
-        <div class="form-check">
-            <input class="form-check-input" type="radio" name="Valoracion_Solucion" value="Satisfactorio">
-            <label class="form-check-label">Satisfactorio</label>
-            <input class="form-check-input" type="radio" name="Valoracion_Solucion" value="Por Mejorar">
-            <label class="form-check-label">Por Mejorar</label>
-        </div>
-    </div>
-    <br />
-
-    <div class="form-group">
-        <label>Cumplimiento</label><br />
-        <p>
-            Asume compromiso de las funciones y responsabilidades asignadas en el desarrollo de su etapa productiva.
-        </p>
-        <textarea class="form-control" rows="6" name="Cumplimiento"></textarea>
-        <div class="form-check">
-            <input class="form-check-input" type="radio" name="Valoracion_Cumplimiento" value="Satisfactorio">
-            <label class="form-check-label">Satisfactorio</label>
-            <input class="form-check-input" type="radio" name="Valoracion_Cumplimiento" value="Por Mejorar">
-            <label class="form-check-label">Por Mejorar</label>
-        </div>
-    </div>
-    <br />
-
-    <div class="form-group">
-        <label>Organizacion</label><br />
-        <p>
-            Demuestra capacidad para ordenar y disponer los elementos necesarios e informacion para facilitar le ejecucion de un trabajo y el logro de los objetivos.
-        </p>
-        <textarea class="form-control" rows="6" name="Organizacion"></textarea>
-        <div class="form-check">
-            <input class="form-check-input" type="radio" name="Valoracion_Organizacion" value="Satisfactorio">
-            <label class="form-check-label">Satisfactorio</label>
-            <input class="form-check-input" type="radio" name="Valoracion_Organizacion" value="Por Mejorar">
-            <label class="form-check-label">Por Mejorar</label>
-        </div>
-    </div>
-    <br />
-
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Agregar" class="btn btn-success" />
-        </div>
-    </div>
-</div>
 }
 
 @section Scripts {

@@ -263,10 +263,8 @@
     <Content Include="Views\Tbl_Empresas\Create.cshtml" />
     <Content Include="Views\Tbl_Empresas\Edit.cshtml" />
     <Content Include="Views\Tbl_Evaluacion_Etapa_Productiva\Create.cshtml" />
-    <Content Include="Views\Tbl_Evaluacion_Etapa_Productiva\Delete.cshtml" />
     <Content Include="Views\Tbl_Evaluacion_Etapa_Productiva\Details.cshtml" />
     <Content Include="Views\Tbl_Evaluacion_Etapa_Productiva\Edit.cshtml" />
-    <Content Include="Views\Tbl_Evaluacion_Etapa_Productiva\Index.cshtml" />
     <Content Include="Views\Tbl_Factores_Tecnicos\Create.cshtml" />
     <Content Include="Views\Tbl_Factores_Tecnicos\Details.cshtml" />
     <Content Include="Views\Tbl_Factores_Tecnicos\Edit.cshtml" />
