@@ -96,13 +96,6 @@
                 @Html.ActionLink("Editar", "Edit", new { id = item.Numero_Identificacion }, new { @class = "btn btn-primary" })
                 @Html.ActionLink("Parcial", "Details", new { id = item.Numero_Identificacion, etapa = 1 }, new { @class = "btn btn-info" })
                 @Html.ActionLink("Final", "Details", new { id = item.Numero_Identificacion, etapa = 2 }, new { @class = "btn btn-info" })
-                @{
-                    if (Session["Rol"].ToString() == "1")
-                    {
-                        @Html.ActionLink("Eliminar", "Delete", new { id = item.Numero_Identificacion }, new { @class = "btn btn-danger" })
-
-                    }
-                }
             </td>
         </tr>
     }
