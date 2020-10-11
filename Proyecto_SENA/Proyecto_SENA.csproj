@@ -256,7 +256,6 @@
     <Content Include="Views\Tbl_Actitud_Comportamiento\Details.cshtml" />
     <Content Include="Views\Tbl_Actitud_Comportamiento\Edit.cshtml" />
     <Content Include="Views\Tbl_Aprendices\Create.cshtml" />
-    <Content Include="Views\Tbl_Aprendices\Delete.cshtml" />
     <Content Include="Views\Tbl_Aprendices\Details.cshtml" />
     <Content Include="Views\Tbl_Aprendices\Edit.cshtml" />
     <Content Include="Views\Tbl_Aprendices\Index.cshtml" />

@@ -150,47 +150,6 @@ namespace Proyecto_SENA.Controllers
             ViewBag.Id_Ficha = new SelectList(db.Tbl_Fichas, "Id_Ficha", "Numero_Ficha", tbl_Aprendices.Id_Ficha);
             return View(tbl_Aprendices);
         }
-
-        // GET: Tbl_Aprendices/Delete/5
-        /// <summary>
-        /// Se valida mediante la variable de Session["Rol"] que el usuario tenga permiso
-        /// </summary>
-        /// <param name="id">Resive el id que contiene la informacion del registro a eliminar</param>
-        /// <returns>La vista con el modelo que contiene la informacion correspondiente al id</returns>        
-        public ActionResult Delete(int? id)
-        {
-            if (Session["Rol"].ToString() != "1")
-            {
-                return RedirectToAction("Index", "Home");
-            }
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Tbl_Aprendices tbl_Aprendices = db.Tbl_Aprendices.Find(id);
-            if (tbl_Aprendices == null)
-            {
-                return HttpNotFound();
-            }
-            return View(tbl_Aprendices);
-        }
-
-        // POST: Tbl_Aprendices/Delete/5
-        /// <summary>
-        /// Se muestar la vista con la informacion correspondiente al id
-        /// </summary>
-        /// <param name="id">Resive el id que contiene la informacion del registro a eliminar</param>
-        /// <returns>Se devuelve la vista mas el modelo con la informacion del registro a eliminar</returns>
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            Tbl_Aprendices tbl_Aprendices = db.Tbl_Aprendices.Find(id);
-            db.Tbl_Aprendices.Remove(tbl_Aprendices);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
-
         /// <summary>
         /// se consulta si el aprendiz ya tiene una empresa registrada, si es asi se redirecciona al
         /// details del controller empresa, si es no redireccona al create del controller empresa,
